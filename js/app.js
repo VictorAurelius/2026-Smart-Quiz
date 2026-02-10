@@ -35,6 +35,10 @@
   let wrongItems      = [];    // items answered incorrectly
   let isRetryMode     = false;
 
+  // Navigation history
+  let navigationHistory = [];  // Stack to track screen navigation
+  const MAX_HISTORY = 20;      // Prevent memory issues
+
   // Flashcard state
   let fcKnownCount = 0;
 
@@ -104,16 +108,65 @@
   // ──────────────────────────────────────────
   // Navigation helpers
   // ──────────────────────────────────────────
-  function showScreen(name) {
+  function showScreen(name, addToHistory = true) {
+    // Add current screen to history before navigating
+    if (addToHistory) {
+      const currentScreen = Object.keys(screens).find(key =>
+        screens[key].classList.contains("active")
+      );
+      if (currentScreen && currentScreen !== name) {
+        navigationHistory.push(currentScreen);
+        // Limit history size
+        if (navigationHistory.length > MAX_HISTORY) {
+          navigationHistory.shift();
+        }
+      }
+    }
+
+    // Show new screen
     for (const s of Object.values(screens)) s.classList.remove("active");
     screens[name].classList.add("active");
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Update back button visibility
+    updateBackButton();
+  }
+
+  function goBack() {
+    if (navigationHistory.length > 0) {
+      const previousScreen = navigationHistory.pop();
+      showScreen(previousScreen, false); // Don't add to history when going back
+    } else {
+      // Fallback: go to lessons if no history
+      renderLessonGrid();
+      showScreen("lessons", false);
+      $("#header-title").textContent = "Minna no Nihongo 1";
+    }
+  }
+
+  function updateBackButton() {
+    const backBtn = $("#btn-back");
+    if (navigationHistory.length > 0) {
+      backBtn.classList.remove("hidden");
+    } else {
+      backBtn.classList.add("hidden");
+    }
+  }
+
+  function clearNavigationHistory() {
+    navigationHistory = [];
+    updateBackButton();
   }
 
   $("#btn-home").addEventListener("click", () => {
     renderLessonGrid();
-    showScreen("lessons");
+    clearNavigationHistory();  // Clear history when going home
+    showScreen("lessons", false);  // Don't add home to history
     $("#header-title").textContent = "Minna no Nihongo 1";
+  });
+
+  $("#btn-back").addEventListener("click", () => {
+    goBack();
   });
 
   // ──────────────────────────────────────────
@@ -318,10 +371,6 @@
     showScreen("vocabList");
   }
 
-  $("#btn-back-from-list").addEventListener("click", () => {
-    showScreen("menu");
-  });
-
   // ──────────────────────────────────────────
   // Start a quiz/flashcard session
   // ──────────────────────────────────────────
@@ -418,10 +467,16 @@
     if (isJpToVi) {
       $("#mc-question-label").textContent = "Từ này nghĩa là gì?";
       $("#mc-question").textContent = item.japanese;
+      $("#mc-question").style.fontFamily = "var(--font-jp)";
+      // Show romaji hint for JP→VN mode
+      $("#mc-romaji").textContent = `(${kanaToRomaji(item.kana)})`;
+      $("#mc-romaji").classList.remove("hidden");
     } else {
       $("#mc-question-label").textContent = "Từ nào đúng?";
       $("#mc-question").textContent = item.vietnamese;
       $("#mc-question").style.fontFamily = "inherit";
+      // Hide romaji for VN→JP mode
+      $("#mc-romaji").classList.add("hidden");
     }
 
     // Build 4 options (1 correct + 3 distractors from same lesson)
@@ -467,9 +522,11 @@
       allBtns.forEach((b) => {
         if (b.dataset.correct === "true") b.classList.add("correct");
       });
+      // Enhanced feedback with romaji
+      const romajiText = kanaToRomaji(correctItem.kana);
       const correctText = isJpToVi
-        ? `${correctItem.japanese} = ${correctItem.vietnamese}`
-        : `${correctItem.vietnamese} = ${correctItem.japanese}`;
+        ? `${correctItem.japanese} (${romajiText}) = ${correctItem.vietnamese}`
+        : `${correctItem.vietnamese} = ${correctItem.japanese} (${romajiText})`;
       showFeedback("mc", false, `Đáp án: ${correctText}`);
     }
 
@@ -498,6 +555,12 @@
     input.disabled = false;
     input.focus();
 
+    // Reset romaji hint
+    $("#tp-romaji").textContent = kanaToRomaji(item.kana);
+    $("#tp-romaji").classList.add("hidden");
+    $("#tp-show-romaji").classList.remove("hidden");
+    $("#tp-show-romaji").textContent = "Hiện romaji";
+
     $("#tp-feedback").classList.add("hidden");
     $("#tp-feedback").classList.remove("correct", "wrong");
     $("#tp-next").classList.add("hidden");
@@ -507,6 +570,19 @@
     updateProgress("tp", questionIndex, questions.length);
   }
 
+  $("#tp-show-romaji").addEventListener("click", () => {
+    const romajiEl = $("#tp-romaji");
+    const btnEl = $("#tp-show-romaji");
+
+    if (romajiEl.classList.contains("hidden")) {
+      romajiEl.classList.remove("hidden");
+      btnEl.textContent = "Ẩn romaji";
+    } else {
+      romajiEl.classList.add("hidden");
+      btnEl.textContent = "Hiện romaji";
+    }
+  });
+
   function handleTypingSubmit() {
     const item = questions[questionIndex];
     const input = $("#tp-input");
@@ -515,6 +591,7 @@
 
     input.disabled = true;
     $("#tp-submit").disabled = true;
+    $("#tp-show-romaji").classList.add("hidden");  // Hide hint button after submit
 
     if (userAnswer === correctAnswer) {
       score++;
@@ -523,7 +600,9 @@
     } else {
       wrongItems.push(item);
       input.classList.add("wrong");
-      showFeedback("tp", false, `Đáp án: ${item.kana}  (${item.japanese})`);
+      // Enhanced feedback with romaji
+      const romajiText = kanaToRomaji(item.kana);
+      showFeedback("tp", false, `Đáp án: ${item.kana} (${romajiText}) — ${item.japanese}`);
     }
 
     $("#tp-next").classList.remove("hidden");
@@ -604,17 +683,20 @@
   $("#btn-retry-wrong").addEventListener("click", () => {
     if (wrongItems.length === 0) return;
     isRetryMode = true;
+    clearNavigationHistory();  // Clear history when starting new quiz
     startSession(wrongItems);
   });
 
   $("#btn-retry-all").addEventListener("click", () => {
     isRetryMode = false;
+    clearNavigationHistory();  // Clear history when starting new quiz
     startSession(currentLesson.vocabulary);
   });
 
   $("#btn-results-home").addEventListener("click", () => {
     renderLessonGrid();
-    showScreen("lessons");
+    clearNavigationHistory();  // Clear history when going home
+    showScreen("lessons", false);  // Don't add home to history
     $("#header-title").textContent = "Minna no Nihongo 1";
   });
 

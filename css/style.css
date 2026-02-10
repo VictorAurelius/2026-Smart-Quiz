@@ -417,6 +417,13 @@ body {
   font-weight: 700;
   line-height: 1.4;
 }
+.question-romaji {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+}
 
 .mc-options {
   display: flex;
@@ -502,6 +509,46 @@ body {
 }
 .typing-input.wrong {
   border-color: var(--danger);
+}
+
+/* Romaji hint wrapper */
+.romaji-hint-wrapper {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-hint:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.hint-romaji {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-style: italic;
+  padding: 0.4rem 0.8rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
 }
 
 /* ---------- Results ---------- */
