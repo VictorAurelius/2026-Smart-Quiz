@@ -1,0 +1,855 @@
+/* ================================================
+   Minna no Nihongo 1 — Vocabulary Quiz
+   Clean, responsive, distraction-free UI
+   ================================================ */
+
+/* ---------- CSS Variables / Theming ---------- */
+:root {
+  /* Light theme (default) */
+  --bg:            #f5f5f7;
+  --bg-card:       #ffffff;
+  --bg-header:     #ffffff;
+  --text:          #1d1d1f;
+  --text-muted:    #6e6e73;
+  --border:        #d2d2d7;
+  --primary:       #0071e3;
+  --primary-hover: #0059b3;
+  --accent:        #5856d6;
+  --accent-hover:  #4240a8;
+  --success:       #34c759;
+  --success-bg:    #e8f9ed;
+  --danger:        #ff3b30;
+  --danger-bg:     #fce8e6;
+  --warning:       #ff9500;
+  --shadow:        0 1px 3px rgba(0,0,0,.08);
+  --shadow-lg:     0 4px 16px rgba(0,0,0,.10);
+  --radius:        12px;
+  --radius-sm:     8px;
+  --font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+  --font-jp:       "Noto Sans JP", "Hiragino Kaku Gothic Pro", "Yu Gothic", sans-serif;
+  --transition:    .2s ease;
+}
+
+[data-theme="dark"] {
+  --bg:            #1c1c1e;
+  --bg-card:       #2c2c2e;
+  --bg-header:     #2c2c2e;
+  --text:          #f5f5f7;
+  --text-muted:    #98989d;
+  --border:        #48484a;
+  --primary:       #4da3ff;
+  --primary-hover: #3d8de0;
+  --accent:        #7a78e8;
+  --accent-hover:  #6563c0;
+  --success:       #30d158;
+  --success-bg:    #1a3a24;
+  --danger:        #ff453a;
+  --danger-bg:     #3a1a1a;
+  --shadow:        0 1px 3px rgba(0,0,0,.3);
+  --shadow-lg:     0 4px 16px rgba(0,0,0,.4);
+}
+
+/* ---------- Reset / Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ---------- Header ---------- */
+#app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem 1.25rem;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+#header-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.icon-btn:hover {
+  background: var(--border);
+}
+
+/* ---------- Main / Screens ---------- */
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.screen {
+  display: none;
+}
+.screen.active {
+  display: block;
+  animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.screen-heading {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-size: .9rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- Lesson Grid ---------- */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .75rem;
+}
+
+.lesson-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  text-decoration: none;
+  color: var(--text);
+}
+.lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+.lesson-card .lesson-number {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: .25rem;
+}
+.lesson-card .lesson-title {
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.lesson-card .lesson-meta {
+  font-size: .78rem;
+  color: var(--text-muted);
+  margin-top: .4rem;
+}
+.lesson-card .lesson-progress-bar {
+  margin-top: .5rem;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lesson-card .lesson-progress-bar .fill {
+  height: 100%;
+  background: var(--success);
+  border-radius: 2px;
+  transition: width .3s ease;
+}
+
+/* ---------- Lesson Menu ---------- */
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  max-width: 420px;
+}
+
+/* Menu section divider */
+.menu-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.menu-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  border: none;
+}
+
+.menu-divider-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .6rem 1.2rem;
+  font-size: .95rem;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), transform .1s ease, box-shadow var(--transition);
+  text-decoration: none;
+  line-height: 1.4;
+}
+.btn:active {
+  transform: scale(.97);
+}
+.btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.btn-lg {
+  padding: .85rem 1.5rem;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-accent:hover { background: var(--accent-hover); }
+
+.btn-success {
+  background: var(--success);
+  color: #fff;
+}
+.btn-success:hover { opacity: .85; }
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+.btn-danger:hover { opacity: .85; }
+
+.btn-secondary {
+  background: var(--border);
+  color: var(--text);
+}
+.btn-secondary:hover { opacity: .8; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn-outline:hover {
+  background: var(--border);
+}
+
+/* ---------- Progress Bar ---------- */
+.progress-bar-wrapper {
+  margin-bottom: 1.5rem;
+}
+.progress-text {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: .4rem;
+  text-align: right;
+}
+.progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: width .35s ease;
+  width: 0;
+}
+
+/* ---------- Flashcard ---------- */
+.flashcard {
+  perspective: 800px;
+  width: 100%;
+  max-width: 480px;
+  height: 280px;
+  margin: 0 auto 1rem;
+  cursor: pointer;
+  outline: none;
+}
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .5s ease;
+  transform-style: preserve-3d;
+}
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+.fc-japanese {
+  font-family: var(--font-jp);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+}
+.fc-kana {
+  font-family: var(--font-jp);
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-bottom: .3rem;
+}
+.fc-romaji {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+}
+.fc-meaning {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: .2rem;
+  text-align: center;
+}
+.fc-english {
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin-bottom: .3rem;
+}
+.fc-example {
+  font-family: var(--font-jp);
+  font-size: .85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+.hint-text {
+  text-align: center;
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.fc-nav {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- Multiple Choice ---------- */
+.quiz-question-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.question-label {
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin-bottom: .4rem;
+}
+.question-text {
+  font-family: var(--font-jp);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.question-romaji {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.mc-options {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  margin-bottom: 1rem;
+}
+.mc-option {
+  display: block;
+  width: 100%;
+  padding: .9rem 1.2rem;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  text-align: left;
+  background: var(--bg-card);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  line-height: 1.4;
+}
+.mc-option:hover:not(.disabled) {
+  border-color: var(--primary);
+}
+.mc-option.correct {
+  border-color: var(--success);
+  background: var(--success-bg);
+}
+.mc-option.wrong {
+  border-color: var(--danger);
+  background: var(--danger-bg);
+}
+.mc-option.disabled {
+  cursor: default;
+  opacity: .7;
+}
+.mc-option.correct.disabled {
+  opacity: 1;
+}
+
+/* ---------- Feedback ---------- */
+.feedback {
+  padding: .8rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: .95rem;
+}
+.feedback.correct {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.feedback.wrong {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* ---------- Typing Quiz ---------- */
+.typing-input-wrapper {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+.typing-input {
+  flex: 1;
+  padding: .75rem 1rem;
+  font-size: 1.1rem;
+  font-family: var(--font-jp);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.typing-input:focus {
+  border-color: var(--primary);
+}
+.typing-input.correct {
+  border-color: var(--success);
+}
+.typing-input.wrong {
+  border-color: var(--danger);
+}
+
+/* Romaji hint wrapper */
+.romaji-hint-wrapper {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-hint:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.hint-romaji {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-style: italic;
+  padding: 0.4rem 0.8rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Grammar List ---------- */
+.grammar-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.grammar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition);
+}
+
+.grammar-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.grammar-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+}
+
+.grammar-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.grammar-pattern {
+  font-family: var(--font-jp);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.grammar-card-body {
+  padding: 1.25rem;
+}
+
+.grammar-meaning {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.grammar-meaning strong {
+  color: var(--primary);
+}
+
+.grammar-meaning-en {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.grammar-explanation {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--bg);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.grammar-examples {
+  margin-top: 1rem;
+}
+
+.grammar-examples > strong {
+  display: block;
+  color: var(--primary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.grammar-example {
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid var(--success);
+}
+
+.grammar-example:last-child {
+  margin-bottom: 0;
+}
+
+.grammar-example-jp {
+  font-family: var(--font-jp);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+
+.grammar-example-vi {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.grammar-example-en {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ---------- Results ---------- */
+.results-card {
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-lg);
+  max-width: 420px;
+  margin: 0 auto;
+}
+.results-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.results-score-circle {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 1rem;
+}
+.score-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.score-ring-bg {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 3;
+}
+.score-ring-fill {
+  fill: none;
+  stroke: var(--success);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 0, 100;
+  transition: stroke-dasharray .8s ease;
+}
+.score-percent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.results-detail {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.results-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+/* ---------- Vocabulary Table ---------- */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+#vocab-table th,
+#vocab-table td {
+  padding: .6rem .75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+#vocab-table th {
+  font-weight: 700;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  position: sticky;
+  top: 0;
+}
+#vocab-table td:nth-child(2) {
+  font-family: var(--font-jp);
+  font-weight: 600;
+}
+#vocab-table td:nth-child(3) {
+  font-family: var(--font-jp);
+  color: var(--primary);
+}
+#vocab-table td:nth-child(4) {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+#vocab-table tbody tr:hover {
+  background: var(--bg-card);
+}
+
+/* ---------- Utility ---------- */
+.hidden {
+  display: none !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  #app {
+    padding: 1rem .75rem 2rem;
+  }
+  .lesson-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem;
+  }
+  .lesson-card {
+    padding: .8rem;
+  }
+  .lesson-card .lesson-title {
+    font-size: .85rem;
+  }
+  .flashcard {
+    height: 240px;
+  }
+  .fc-japanese {
+    font-size: 1.6rem;
+  }
+  .question-text {
+    font-size: 1.3rem;
+  }
+  .fc-nav {
+    gap: .4rem;
+  }
+  .fc-nav .btn {
+    padding: .5rem .8rem;
+    font-size: .85rem;
+  }
+  .typing-input-wrapper {
+    flex-direction: column;
+  }
+  .results-card {
+    padding: 1.5rem 1rem;
+  }
+  #header-title {
+    font-size: .95rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+}

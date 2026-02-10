@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minna no Nihongo 1 — Luyện từ vựng</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- HEADER                                       -->
+  <!-- ============================================ -->
+  <header id="app-header">
+    <div class="header-left">
+      <button id="btn-home" class="icon-btn" title="Trang chủ" aria-label="Trang chủ">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </button>
+      <button id="btn-back" class="icon-btn hidden" title="Quay lại" aria-label="Quay lại">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <h1 id="header-title">Minna no Nihongo 1</h1>
+    </div>
+    <div class="header-right">
+      <button id="btn-dark-mode" class="icon-btn" title="Chế độ tối" aria-label="Bật/tắt chế độ tối">
+        <svg id="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT AREA                            -->
+  <!-- ============================================ -->
+  <main id="app">
+
+    <!-- ========== SCREEN: Lesson List ========== -->
+    <section id="screen-lessons" class="screen active">
+      <h2 class="screen-heading">Chọn bài học</h2>
+      <div id="lesson-grid" class="lesson-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ========== SCREEN: Lesson Menu ========== -->
+    <section id="screen-menu" class="screen">
+      <h2 id="menu-lesson-title" class="screen-heading"></h2>
+      <p id="menu-vocab-count" class="text-muted"></p>
+
+      <div class="menu-actions">
+        <button class="btn btn-primary btn-lg" data-mode="flashcard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Flashcard
+        </button>
+        <button class="btn btn-accent btn-lg" data-mode="mc-jp-vi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Trắc nghiệm JP → VN
+        </button>
+        <button class="btn btn-accent btn-lg" data-mode="mc-vi-jp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Trắc nghiệm VN → JP
+        </button>
+        <button class="btn btn-secondary btn-lg" data-mode="typing">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/></svg>
+          Gõ từ vựng
+        </button>
+        <button class="btn btn-secondary btn-lg" data-mode="typing-romaji">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/>
+          </svg>
+          Gõ romaji
+        </button>
+        <button class="btn btn-outline btn-lg" data-mode="vocab-list">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Xem danh sách từ
+        </button>
+
+        <!-- Grammar section divider -->
+        <div class="menu-section-divider">
+          <hr class="menu-divider-line">
+          <span class="menu-divider-text">Ngữ pháp</span>
+          <hr class="menu-divider-line">
+        </div>
+
+        <!-- Grammar buttons -->
+        <button class="btn btn-outline btn-lg" data-mode="grammar-list">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          Xem ngữ pháp
+        </button>
+
+        <button class="btn btn-primary btn-lg" data-mode="grammar-flashcard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          Flashcard ngữ pháp
+        </button>
+
+        <button class="btn btn-accent btn-lg" data-mode="grammar-mc-jp-vi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Trắc nghiệm JP → VN
+        </button>
+
+        <button class="btn btn-accent btn-lg" data-mode="grammar-mc-vi-jp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Trắc nghiệm VN → JP
+        </button>
+      </div>
+    </section>
+
+    <!-- ========== SCREEN: Vocabulary List ========== -->
+    <section id="screen-vocab-list" class="screen">
+      <h2 id="vocab-list-title" class="screen-heading"></h2>
+      <div id="vocab-table-wrapper" class="table-wrapper">
+        <table id="vocab-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tiếng Nhật</th>
+              <th>Kana</th>
+              <th>Romaji</th>
+              <th>Tiếng Việt</th>
+              <th>English</th>
+            </tr>
+          </thead>
+          <tbody id="vocab-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========== SCREEN: Grammar List ========== -->
+    <section id="screen-grammar-list" class="screen">
+      <h2 id="grammar-list-title" class="screen-heading"></h2>
+
+      <div id="grammar-list-container" class="grammar-list-container">
+        <!-- Grammar items rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ========== SCREEN: Flashcard ========== -->
+    <section id="screen-flashcard" class="screen">
+      <div class="progress-bar-wrapper">
+        <div id="fc-progress-text" class="progress-text">1 / 20</div>
+        <div class="progress-bar"><div id="fc-progress-fill" class="progress-fill"></div></div>
+      </div>
+
+      <div id="flashcard" class="flashcard" tabindex="0">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <span class="fc-japanese" id="fc-front-word"></span>
+          </div>
+          <div class="flashcard-back">
+            <span class="fc-kana" id="fc-back-kana"></span>
+            <span class="fc-romaji" id="fc-back-romaji"></span>
+            <span class="fc-meaning" id="fc-back-meaning"></span>
+            <span class="fc-english" id="fc-back-english"></span>
+            <span class="fc-example" id="fc-back-example"></span>
+          </div>
+        </div>
+      </div>
+      <p class="hint-text">Nhấn vào thẻ để lật</p>
+
+      <div class="fc-nav">
+        <button id="fc-prev" class="btn btn-outline">Trước</button>
+        <button id="fc-know" class="btn btn-success">Biết rồi</button>
+        <button id="fc-dont-know" class="btn btn-danger">Chưa biết</button>
+        <button id="fc-next" class="btn btn-outline">Tiếp</button>
+      </div>
+    </section>
+
+    <!-- ========== SCREEN: Multiple Choice ========== -->
+    <section id="screen-mc" class="screen">
+      <div class="progress-bar-wrapper">
+        <div id="mc-progress-text" class="progress-text">1 / 20</div>
+        <div class="progress-bar"><div id="mc-progress-fill" class="progress-fill"></div></div>
+      </div>
+
+      <div class="quiz-question-card">
+        <p id="mc-question-label" class="question-label"></p>
+        <p id="mc-question" class="question-text"></p>
+        <p id="mc-romaji" class="question-romaji hidden"></p>
+      </div>
+
+      <div id="mc-options" class="mc-options">
+        <!-- 4 option buttons rendered by JS -->
+      </div>
+
+      <div id="mc-feedback" class="feedback hidden">
+        <p id="mc-feedback-text"></p>
+      </div>
+
+      <button id="mc-next" class="btn btn-primary hidden">Câu tiếp theo</button>
+    </section>
+
+    <!-- ========== SCREEN: Typing Quiz ========== -->
+    <section id="screen-typing" class="screen">
+      <div class="progress-bar-wrapper">
+        <div id="tp-progress-text" class="progress-text">1 / 20</div>
+        <div class="progress-bar"><div id="tp-progress-fill" class="progress-fill"></div></div>
+      </div>
+
+      <div class="quiz-question-card">
+        <p class="question-label">Nhập từ tiếng Nhật (kana):</p>
+        <p id="tp-question" class="question-text"></p>
+        <div id="tp-romaji-hint-wrapper" class="romaji-hint-wrapper">
+          <button id="tp-show-romaji" class="btn-hint">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Hiện romaji
+          </button>
+          <p id="tp-romaji" class="hint-romaji hidden"></p>
+        </div>
+      </div>
+
+      <div class="typing-input-wrapper">
+        <input type="text" id="tp-input" class="typing-input" placeholder="Nhập kana..." autocomplete="off" />
+        <button id="tp-submit" class="btn btn-primary">Kiểm tra</button>
+      </div>
+
+      <div id="tp-feedback" class="feedback hidden">
+        <p id="tp-feedback-text"></p>
+      </div>
+
+      <button id="tp-next" class="btn btn-primary hidden">Câu tiếp theo</button>
+    </section>
+
+    <!-- ========== SCREEN: Results ========== -->
+    <section id="screen-results" class="screen">
+      <div class="results-card">
+        <h2>Kết quả</h2>
+        <div class="results-score-circle">
+          <svg viewBox="0 0 36 36" class="score-ring">
+            <path class="score-ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <path id="score-ring-fill" class="score-ring-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+          </svg>
+          <span id="results-percent" class="score-percent">0%</span>
+        </div>
+        <p id="results-detail" class="results-detail"></p>
+
+        <div class="results-actions">
+          <button id="btn-retry-wrong" class="btn btn-danger">Làm lại câu sai</button>
+          <button id="btn-retry-all" class="btn btn-accent">Làm lại tất cả</button>
+          <button id="btn-results-home" class="btn btn-outline">Chọn bài khác</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
