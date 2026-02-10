@@ -15,13 +15,14 @@
   const $$ = (sel) => document.querySelectorAll(sel);
 
   const screens = {
-    lessons:   $("#screen-lessons"),
-    menu:      $("#screen-menu"),
-    vocabList: $("#screen-vocab-list"),
-    flashcard: $("#screen-flashcard"),
-    mc:        $("#screen-mc"),
-    typing:    $("#screen-typing"),
-    results:   $("#screen-results"),
+    lessons:     $("#screen-lessons"),
+    menu:        $("#screen-menu"),
+    vocabList:   $("#screen-vocab-list"),
+    grammarList: $("#screen-grammar-list"),
+    flashcard:   $("#screen-flashcard"),
+    mc:          $("#screen-mc"),
+    typing:      $("#screen-typing"),
+    results:     $("#screen-results"),
   };
 
   // ──────────────────────────────────────────
@@ -189,6 +190,26 @@
       .toLowerCase();
   }
 
+  /** Normalize romaji string for comparison: handle variations */
+  function normalizeRomaji(str) {
+    return str
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '') // Remove all spaces
+      // Handle common variations (normalize to one form)
+      .replace(/shi/g, 'si')     // し can be shi or si
+      .replace(/chi/g, 'ti')     // ち can be chi or ti
+      .replace(/tsu/g, 'tu')     // つ can be tsu or tu
+      .replace(/fu/g, 'hu')      // ふ can be fu or hu
+      .replace(/ji/g, 'zi')      // じ can be ji or zi
+      // Handle long vowels (standardize to ou, uu, etc.)
+      .replace(/ō/g, 'ou')
+      .replace(/ū/g, 'uu')
+      .replace(/ē/g, 'ei')
+      .replace(/ā/g, 'aa')
+      .replace(/n(?=[^aiueoyn]|$)/g, 'n');
+  }
+
   /** Convert kana (hiragana/katakana) to romaji */
   function kanaToRomaji(kana) {
     if (!kana) return "";
@@ -337,15 +358,27 @@
       const mode = btn.dataset.mode;
       if (!mode || !currentLesson) return;
 
+      // Handle list views
       if (mode === "vocab-list") {
         openVocabList();
         return;
       }
+      if (mode === "grammar-list") {
+        openGrammarList();
+        return;
+      }
 
+      // Handle quiz modes
       currentMode   = mode;
       isRetryMode   = false;
       wrongItems    = [];
-      startSession(currentLesson.vocabulary);
+
+      // Determine content type and start session
+      if (mode.startsWith("grammar-")) {
+        startSession(currentLesson.grammar || []);
+      } else {
+        startSession(currentLesson.vocabulary);
+      }
     });
   });
 
@@ -372,6 +405,58 @@
   }
 
   // ──────────────────────────────────────────
+  // SCREEN: Grammar List
+  // ──────────────────────────────────────────
+  function openGrammarList() {
+    if (!currentLesson.grammar || currentLesson.grammar.length === 0) {
+      alert("Ngữ pháp cho bài này chưa có. Vui lòng quay lại sau!");
+      return;
+    }
+
+    $("#grammar-list-title").textContent =
+      `Bài ${currentLesson.lessonNumber} — Ngữ pháp`;
+
+    const container = $("#grammar-list-container");
+    container.innerHTML = "";
+
+    currentLesson.grammar.forEach((g, i) => {
+      const card = document.createElement("div");
+      card.className = "grammar-card";
+
+      // Build examples HTML
+      const examplesHTML = g.examples.map(ex => `
+        <div class="grammar-example">
+          <p class="grammar-example-jp">${ex.japanese}</p>
+          <p class="grammar-example-vi">${ex.vietnamese}</p>
+          ${ex.english ? `<p class="grammar-example-en">${ex.english}</p>` : ''}
+        </div>
+      `).join('');
+
+      card.innerHTML = `
+        <div class="grammar-card-header">
+          <span class="grammar-number">${i + 1}</span>
+          <h3 class="grammar-pattern">${g.pattern}</h3>
+        </div>
+        <div class="grammar-card-body">
+          <p class="grammar-meaning">
+            <strong>Nghĩa:</strong> ${g.vietnamese}
+            ${g.english ? `<span class="grammar-meaning-en"> (${g.english})</span>` : ''}
+          </p>
+          <p class="grammar-explanation">${g.explanation}</p>
+          <div class="grammar-examples">
+            <strong>Ví dụ:</strong>
+            ${examplesHTML}
+          </div>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+    showScreen("grammarList");
+  }
+
+  // ──────────────────────────────────────────
   // Start a quiz/flashcard session
   // ──────────────────────────────────────────
   function startSession(vocabSubset) {
@@ -380,14 +465,14 @@
     score         = 0;
     wrongItems    = [];
 
-    if (currentMode === "flashcard") {
+    if (currentMode === "flashcard" || currentMode === "grammar-flashcard") {
       fcKnownCount = 0;
       showScreen("flashcard");
       renderFlashcard();
-    } else if (currentMode.startsWith("mc")) {
+    } else if (currentMode.startsWith("mc") || currentMode.startsWith("grammar-mc")) {
       showScreen("mc");
       renderMC();
-    } else if (currentMode === "typing") {
+    } else if (currentMode === "typing" || currentMode === "typing-romaji") {
       showScreen("typing");
       renderTyping();
     }
@@ -410,17 +495,38 @@
 
   function renderFlashcard() {
     const item = questions[questionIndex];
+    const isGrammarMode = currentMode === "grammar-flashcard";
+
     flashcardEl.classList.remove("flipped");
 
-    $("#fc-front-word").textContent   = item.japanese;
-    $("#fc-back-kana").textContent    = item.kana;
-    $("#fc-back-romaji").textContent  = kanaToRomaji(item.kana);
-    $("#fc-back-meaning").textContent = item.vietnamese;
-    $("#fc-back-english").textContent = item.english || "";
-    $("#fc-back-example").textContent = item.example || "";
+    if (isGrammarMode) {
+      // Grammar flashcard: Front = Pattern, Back = Meaning + Examples
+      $("#fc-front-word").textContent = item.pattern;
+
+      $("#fc-back-kana").textContent = item.vietnamese;
+      $("#fc-back-romaji").textContent = item.english || "";
+      $("#fc-back-meaning").textContent = item.explanation;
+
+      // Show first example
+      if (item.examples && item.examples.length > 0) {
+        const ex = item.examples[0];
+        $("#fc-back-example").textContent =
+          `${ex.japanese}\n${ex.vietnamese}`;
+      } else {
+        $("#fc-back-example").textContent = "";
+      }
+      $("#fc-back-english").textContent = "";
+    } else {
+      // Vocabulary flashcard: existing logic
+      $("#fc-front-word").textContent = item.japanese;
+      $("#fc-back-kana").textContent = item.kana;
+      $("#fc-back-romaji").textContent = kanaToRomaji(item.kana);
+      $("#fc-back-meaning").textContent = item.vietnamese;
+      $("#fc-back-english").textContent = item.english || "";
+      $("#fc-back-example").textContent = item.example || "";
+    }
 
     updateProgress("fc", questionIndex, questions.length);
-
     $("#fc-prev").disabled = questionIndex === 0;
   }
 
@@ -461,26 +567,35 @@
   // ──────────────────────────────────────────
   function renderMC() {
     const item = questions[questionIndex];
-    const isJpToVi = currentMode === "mc-jp-vi";
+    const isGrammarMode = currentMode.startsWith("grammar-mc");
+    const isJpToVi = currentMode === "mc-jp-vi" || currentMode === "grammar-mc-jp-vi";
 
     // Question
     if (isJpToVi) {
-      $("#mc-question-label").textContent = "Từ này nghĩa là gì?";
-      $("#mc-question").textContent = item.japanese;
+      $("#mc-question-label").textContent =
+        isGrammarMode ? "Mẫu ngữ pháp này nghĩa là gì?" : "Từ này nghĩa là gì?";
+      $("#mc-question").textContent =
+        isGrammarMode ? item.pattern : item.japanese;
       $("#mc-question").style.fontFamily = "var(--font-jp)";
-      // Show romaji hint for JP→VN mode
-      $("#mc-romaji").textContent = `(${kanaToRomaji(item.kana)})`;
-      $("#mc-romaji").classList.remove("hidden");
+
+      // Show hint for vocabulary, hide for grammar
+      if (!isGrammarMode) {
+        $("#mc-romaji").textContent = `(${kanaToRomaji(item.kana)})`;
+        $("#mc-romaji").classList.remove("hidden");
+      } else {
+        $("#mc-romaji").classList.add("hidden");
+      }
     } else {
-      $("#mc-question-label").textContent = "Từ nào đúng?";
+      $("#mc-question-label").textContent =
+        isGrammarMode ? "Mẫu ngữ pháp nào đúng?" : "Từ nào đúng?";
       $("#mc-question").textContent = item.vietnamese;
       $("#mc-question").style.fontFamily = "inherit";
-      // Hide romaji for VN→JP mode
       $("#mc-romaji").classList.add("hidden");
     }
 
-    // Build 4 options (1 correct + 3 distractors from same lesson)
-    const pool = currentLesson.vocabulary.filter((v) => v !== item);
+    // Build 4 options (1 correct + 3 distractors)
+    const contentArray = isGrammarMode ? currentLesson.grammar : currentLesson.vocabulary;
+    const pool = contentArray.filter((v) => v !== item);
     const distractors = shuffle(pool).slice(0, 3);
     const options = shuffle([item, ...distractors]);
 
@@ -490,9 +605,16 @@
     options.forEach((opt) => {
       const btn = document.createElement("button");
       btn.className = "mc-option";
-      btn.textContent = isJpToVi ? opt.vietnamese : opt.japanese;
+
+      if (isGrammarMode) {
+        btn.textContent = isJpToVi ? opt.vietnamese : opt.pattern;
+      } else {
+        btn.textContent = isJpToVi ? opt.vietnamese : opt.japanese;
+      }
+
       btn.dataset.correct = (opt === item) ? "true" : "false";
-      btn.addEventListener("click", () => handleMCAnswer(btn, item, isJpToVi));
+      btn.addEventListener("click", () =>
+        handleMCAnswer(btn, item, isJpToVi, isGrammarMode));
       optionsContainer.appendChild(btn);
     });
 
@@ -504,7 +626,7 @@
     updateProgress("mc", questionIndex, questions.length);
   }
 
-  function handleMCAnswer(btn, correctItem, isJpToVi) {
+  function handleMCAnswer(btn, correctItem, isJpToVi, isGrammarMode = false) {
     // Prevent double-click
     const allBtns = $$(".mc-option");
     allBtns.forEach((b) => b.classList.add("disabled"));
@@ -518,15 +640,25 @@
     } else {
       btn.classList.add("wrong");
       wrongItems.push(correctItem);
+
       // Highlight the correct answer
       allBtns.forEach((b) => {
         if (b.dataset.correct === "true") b.classList.add("correct");
       });
-      // Enhanced feedback with romaji
-      const romajiText = kanaToRomaji(correctItem.kana);
-      const correctText = isJpToVi
-        ? `${correctItem.japanese} (${romajiText}) = ${correctItem.vietnamese}`
-        : `${correctItem.vietnamese} = ${correctItem.japanese} (${romajiText})`;
+
+      // Build feedback based on content type
+      let correctText;
+      if (isGrammarMode) {
+        correctText = isJpToVi
+          ? `${correctItem.pattern} = ${correctItem.vietnamese}`
+          : `${correctItem.vietnamese} = ${correctItem.pattern}`;
+      } else {
+        const romajiText = kanaToRomaji(correctItem.kana);
+        correctText = isJpToVi
+          ? `${correctItem.japanese} (${romajiText}) = ${correctItem.vietnamese}`
+          : `${correctItem.vietnamese} = ${correctItem.japanese} (${romajiText})`;
+      }
+
       showFeedback("mc", false, `Đáp án: ${correctText}`);
     }
 
@@ -547,19 +679,36 @@
   // ──────────────────────────────────────────
   function renderTyping() {
     const item = questions[questionIndex];
+    const isRomajiMode = currentMode === "typing-romaji";
+
     $("#tp-question").textContent = item.vietnamese;
+
+    // Update label based on mode
+    const labelEl = $("#screen-typing .question-label");
+    if (isRomajiMode) {
+      labelEl.textContent = "Nhập từ tiếng Nhật (romaji):";
+    } else {
+      labelEl.textContent = "Nhập từ tiếng Nhật (kana):";
+    }
 
     const input = $("#tp-input");
     input.value = "";
     input.className = "typing-input";
     input.disabled = false;
+    input.placeholder = isRomajiMode ? "Nhập romaji..." : "Nhập kana...";
     input.focus();
 
-    // Reset romaji hint
-    $("#tp-romaji").textContent = kanaToRomaji(item.kana);
-    $("#tp-romaji").classList.add("hidden");
-    $("#tp-show-romaji").classList.remove("hidden");
-    $("#tp-show-romaji").textContent = "Hiện romaji";
+    // For romaji mode: hide hint wrapper completely
+    // For kana mode: show romaji hint
+    if (isRomajiMode) {
+      $("#tp-romaji-hint-wrapper").classList.add("hidden");
+    } else {
+      $("#tp-romaji-hint-wrapper").classList.remove("hidden");
+      $("#tp-romaji").textContent = kanaToRomaji(item.kana);
+      $("#tp-romaji").classList.add("hidden");
+      $("#tp-show-romaji").classList.remove("hidden");
+      $("#tp-show-romaji").textContent = "Hiện romaji";
+    }
 
     $("#tp-feedback").classList.add("hidden");
     $("#tp-feedback").classList.remove("correct", "wrong");
@@ -586,12 +735,23 @@
   function handleTypingSubmit() {
     const item = questions[questionIndex];
     const input = $("#tp-input");
-    const userAnswer = normalizeKana(input.value);
-    const correctAnswer = normalizeKana(item.kana);
+    const isRomajiMode = currentMode === "typing-romaji";
+
+    let userAnswer, correctAnswer;
+
+    if (isRomajiMode) {
+      // Romaji mode: compare romaji
+      userAnswer = normalizeRomaji(input.value);
+      correctAnswer = normalizeRomaji(kanaToRomaji(item.kana));
+    } else {
+      // Kana mode: compare kana
+      userAnswer = normalizeKana(input.value);
+      correctAnswer = normalizeKana(item.kana);
+    }
 
     input.disabled = true;
     $("#tp-submit").disabled = true;
-    $("#tp-show-romaji").classList.add("hidden");  // Hide hint button after submit
+    $("#tp-show-romaji").classList.add("hidden");
 
     if (userAnswer === correctAnswer) {
       score++;
@@ -600,9 +760,15 @@
     } else {
       wrongItems.push(item);
       input.classList.add("wrong");
-      // Enhanced feedback with romaji
-      const romajiText = kanaToRomaji(item.kana);
-      showFeedback("tp", false, `Đáp án: ${item.kana} (${romajiText}) — ${item.japanese}`);
+
+      // Enhanced feedback based on mode
+      if (isRomajiMode) {
+        const correctRomaji = kanaToRomaji(item.kana);
+        showFeedback("tp", false, `Đáp án: ${correctRomaji} — ${item.kana} — ${item.japanese}`);
+      } else {
+        const romajiText = kanaToRomaji(item.kana);
+        showFeedback("tp", false, `Đáp án: ${item.kana} (${romajiText}) — ${item.japanese}`);
+      }
     }
 
     $("#tp-next").classList.remove("hidden");

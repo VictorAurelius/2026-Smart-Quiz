@@ -313,6 +313,85 @@ const VOCABULARY_DATA = [
         english: "Brazil",
         example: ""
       }
+    ],
+    grammar: [
+      {
+        pattern: "～は ～です",
+        vietnamese: "~ là ~",
+        english: "~ is/am/are ~",
+        explanation: "Dùng để giới thiệu bản thân hoặc xác định danh tính. 'は' là trợ từ chỉ chủ đề, 'です' là động từ 'là' lịch sự.",
+        examples: [
+          {
+            japanese: "わたしは マイクです。",
+            vietnamese: "Tôi là Mike.",
+            english: "I am Mike."
+          },
+          {
+            japanese: "わたしは がくせいです。",
+            vietnamese: "Tôi là học sinh.",
+            english: "I am a student."
+          },
+          {
+            japanese: "やまださんは せんせいです。",
+            vietnamese: "Anh Yamada là giáo viên.",
+            english: "Mr. Yamada is a teacher."
+          }
+        ]
+      },
+      {
+        pattern: "～は ～じゃ ありません",
+        vietnamese: "~ không phải là ~",
+        english: "~ is/am/are not ~",
+        explanation: "Dạng phủ định của 'です'. 'じゃ' là viết tắt thân mật của 'では'.",
+        examples: [
+          {
+            japanese: "わたしは がくせいじゃ ありません。",
+            vietnamese: "Tôi không phải là học sinh.",
+            english: "I am not a student."
+          },
+          {
+            japanese: "サントスさんは せんせいじゃ ありません。",
+            vietnamese: "Anh Santos không phải là giáo viên.",
+            english: "Mr. Santos is not a teacher."
+          }
+        ]
+      },
+      {
+        pattern: "～は ～ですか",
+        vietnamese: "~ có phải là ~ không?",
+        english: "Is/Am/Are ~ ~?",
+        explanation: "Câu hỏi yes/no. Thêm 'か' vào cuối câu khẳng định. Trả lời: はい、～です hoặc いいえ、～じゃ ありません。",
+        examples: [
+          {
+            japanese: "あなたは がくせいですか。",
+            vietnamese: "Bạn có phải là học sinh không?",
+            english: "Are you a student?"
+          },
+          {
+            japanese: "ミラーさんは アメリカじんですか。",
+            vietnamese: "Anh Miller có phải là người Mỹ không?",
+            english: "Is Mr. Miller American?"
+          }
+        ]
+      },
+      {
+        pattern: "～の ～",
+        vietnamese: "~ của ~",
+        english: "~ of ~, ~'s ~",
+        explanation: "Trợ từ 'の' dùng để chỉ sở hữu hoặc thuộc tính. Kết nối hai danh từ.",
+        examples: [
+          {
+            japanese: "これは わたしの ほんです。",
+            vietnamese: "Đây là sách của tôi.",
+            english: "This is my book."
+          },
+          {
+            japanese: "やまださんは IMCの しゃいんです。",
+            vietnamese: "Anh Yamada là nhân viên của IMC.",
+            english: "Mr. Yamada is an employee of IMC."
+          }
+        ]
+      }
     ]
   },
 
@@ -623,6 +702,90 @@ const VOCABULARY_DATA = [
         vietnamese: "từ nay xin nhờ giúp đỡ",
         english: "I hope for your kind assistance",
         example: ""
+      }
+    ],
+    grammar: [
+      {
+        pattern: "これ/それ/あれ は ～です",
+        vietnamese: "Cái này/đó/kia là ~",
+        english: "This/That is ~",
+        explanation: "Đại từ chỉ định vật thể. これ (gần người nói), それ (gần người nghe), あれ (xa cả hai).",
+        examples: [
+          {
+            japanese: "これは カメラです。",
+            vietnamese: "Cái này là máy ảnh.",
+            english: "This is a camera."
+          },
+          {
+            japanese: "それは テレビです。",
+            vietnamese: "Cái đó là TV.",
+            english: "That is a TV."
+          },
+          {
+            japanese: "あれは わたしの かさです。",
+            vietnamese: "Cái kia là ô của tôi.",
+            english: "That over there is my umbrella."
+          }
+        ]
+      },
+      {
+        pattern: "この/その/あの ～",
+        vietnamese: "~ này/đó/kia",
+        english: "This/That ~ (noun modifier)",
+        explanation: "Từ định chỉ đứng trước danh từ. この (gần người nói), その (gần người nghe), あの (xa cả hai).",
+        examples: [
+          {
+            japanese: "この ほんは わたしのです。",
+            vietnamese: "Quyển sách này là của tôi.",
+            english: "This book is mine."
+          },
+          {
+            japanese: "その かばんは だれのですか。",
+            vietnamese: "Cái cặp đó là của ai?",
+            english: "Whose bag is that?"
+          },
+          {
+            japanese: "あの ひとは たなかさんです。",
+            vietnamese: "Người kia là anh Tanaka.",
+            english: "That person is Mr. Tanaka."
+          }
+        ]
+      },
+      {
+        pattern: "～は ～のです",
+        vietnamese: "~ là của ~",
+        english: "~ belongs to ~",
+        explanation: "Biểu thị sở hữu. 'の' đại diện cho danh từ đã được nhắc đến (pronoun).",
+        examples: [
+          {
+            japanese: "この かさは わたしのです。",
+            vietnamese: "Cây ô này là của tôi.",
+            english: "This umbrella is mine."
+          },
+          {
+            japanese: "それは だれのですか。",
+            vietnamese: "Cái đó là của ai?",
+            english: "Whose is that?"
+          }
+        ]
+      },
+      {
+        pattern: "そうです / そうじゃ ありません",
+        vietnamese: "Đúng vậy / Không phải",
+        english: "That's right / That's not right",
+        explanation: "Câu trả lời ngắn xác nhận hoặc phủ định. Thay cho việc lặp lại toàn bộ câu.",
+        examples: [
+          {
+            japanese: "これは ほんですか。— はい、そうです。",
+            vietnamese: "Cái này là sách à? — Vâng, đúng vậy.",
+            english: "Is this a book? — Yes, it is."
+          },
+          {
+            japanese: "これは あなたのですか。— いいえ、そうじゃ ありません。",
+            vietnamese: "Cái này là của bạn à? — Không, không phải.",
+            english: "Is this yours? — No, it's not."
+          }
+        ]
       }
     ]
   },
