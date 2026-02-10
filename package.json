@@ -1,0 +1,34 @@
+{
+  "name": "minna-vocab-quiz",
+  "version": "1.0.0",
+  "description": "Ứng dụng học từ vựng và ngữ pháp tiếng Nhật theo giáo trình Minna no Nihongo I (Bài 1-25)",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080 || python -m http.server 8080",
+    "dev": "npx http-server -p 8080 -o",
+    "test": "node -c js/app.js && node -c js/data.js && echo '✅ All JavaScript files are valid!'",
+    "validate": "npm run test"
+  },
+  "keywords": [
+    "japanese",
+    "vocabulary",
+    "grammar",
+    "quiz",
+    "minna-no-nihongo",
+    "learning",
+    "education",
+    "language",
+    "nihongo",
+    "jlpt"
+  ],
+  "author": "Minna Vocab Quiz Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/minna-vocab-quiz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/minna-vocab-quiz/issues"
+  },
+  "homepage": "https://your-username.github.io/minna-vocab-quiz"
+}

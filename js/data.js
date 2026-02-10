@@ -1049,6 +1049,85 @@ const VOCABULARY_DATA = [
         english: "ten thousand",
         example: ""
       }
+    ],
+    grammar: [
+      {
+        pattern: "ここ/そこ/あそこ は ～です",
+        vietnamese: "Đây/đó/kia là ~",
+        english: "Here/There is ~",
+        explanation: "Đại từ chỉ định địa điểm. ここ (gần người nói), そこ (gần người nghe), あそこ (xa cả hai).",
+        examples: [
+          {
+            japanese: "ここは しょくどうです。",
+            vietnamese: "Đây là nhà ăn.",
+            english: "This place is a dining hall."
+          },
+          {
+            japanese: "そこは トイレです。",
+            vietnamese: "Đó là nhà vệ sinh.",
+            english: "That place is a restroom."
+          },
+          {
+            japanese: "あそこは エレベーターです。",
+            vietnamese: "Kia là thang máy.",
+            english: "That place over there is an elevator."
+          }
+        ]
+      },
+      {
+        pattern: "～は どこですか",
+        vietnamese: "~ ở đâu?",
+        english: "Where is ~?",
+        explanation: "Câu hỏi về vị trí. 'どこ' nghĩa là 'ở đâu'.",
+        examples: [
+          {
+            japanese: "トイレは どこですか。",
+            vietnamese: "Nhà vệ sinh ở đâu?",
+            english: "Where is the restroom?"
+          },
+          {
+            japanese: "でんわは どこですか。",
+            vietnamese: "Điện thoại ở đâu?",
+            english: "Where is the telephone?"
+          }
+        ]
+      },
+      {
+        pattern: "～は ～かいです",
+        vietnamese: "~ ở tầng ~",
+        english: "~ is on the ~ floor",
+        explanation: "Chỉ số tầng. かい (階) nghĩa là 'tầng'.",
+        examples: [
+          {
+            japanese: "しょくどうは 1かいです。",
+            vietnamese: "Nhà ăn ở tầng 1.",
+            english: "The dining hall is on the 1st floor."
+          },
+          {
+            japanese: "かいぎしつは 3かいです。",
+            vietnamese: "Phòng họp ở tầng 3.",
+            english: "The meeting room is on the 3rd floor."
+          }
+        ]
+      },
+      {
+        pattern: "～の ～",
+        vietnamese: "~ của/ở ~",
+        english: "~ of ~, ~ in/at ~",
+        explanation: "Trợ từ 'の' kết nối tên địa điểm với tổ chức/công ty.",
+        examples: [
+          {
+            japanese: "この エレベーターは IMCの エレベーターです。",
+            vietnamese: "Thang máy này là thang máy của IMC.",
+            english: "This elevator is IMC's elevator."
+          },
+          {
+            japanese: "あの きょうしつは にほんごの きょうしつです。",
+            vietnamese: "Lớp học kia là lớp học tiếng Nhật.",
+            english: "That classroom is a Japanese classroom."
+          }
+        ]
+      }
     ]
   },
 
@@ -1353,6 +1432,80 @@ const VOCABULARY_DATA = [
         english: "your place (polite)",
         example: "そちらは なんじから なんじまでですか。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "～時～分",
+        vietnamese: "~ giờ ~ phút",
+        english: "~ o'clock ~ minute",
+        explanation: "Cách nói giờ và phút trong tiếng Nhật. じ (時) = giờ, ふん/ぷん (分) = phút.",
+        examples: [
+          {
+            japanese: "いま 9じ 10ぷんです。",
+            vietnamese: "Bây giờ là 9 giờ 10 phút.",
+            english: "It's 9:10 now."
+          },
+          {
+            japanese: "かいぎは 3じはんです。",
+            vietnamese: "Cuộc họp là lúc 3 giờ rưỡi.",
+            english: "The meeting is at 3:30."
+          }
+        ]
+      },
+      {
+        pattern: "～に ～ます",
+        vietnamese: "~ vào lúc ~",
+        english: "~ at (time)",
+        explanation: "Trợ từ 'に' chỉ thời điểm cụ thể.",
+        examples: [
+          {
+            japanese: "まいあさ 6じに おきます。",
+            vietnamese: "Tôi dậy lúc 6 giờ mỗi sáng.",
+            english: "I wake up at 6 o'clock every morning."
+          },
+          {
+            japanese: "12じ 15ふんに べんきょうします。",
+            vietnamese: "Tôi học lúc 12 giờ 15 phút.",
+            english: "I study at 12:15."
+          }
+        ]
+      },
+      {
+        pattern: "～から ～まで",
+        vietnamese: "từ ~ đến ~",
+        english: "from ~ to/until ~",
+        explanation: "Chỉ khoảng thời gian từ điểm bắt đầu đến điểm kết thúc.",
+        examples: [
+          {
+            japanese: "9じから 5じまで はたらきます。",
+            vietnamese: "Tôi làm việc từ 9 giờ đến 5 giờ.",
+            english: "I work from 9 to 5."
+          },
+          {
+            japanese: "げつようびから きんようびまで がっこうへ いきます。",
+            vietnamese: "Tôi đi học từ thứ Hai đến thứ Sáu.",
+            english: "I go to school from Monday to Friday."
+          }
+        ]
+      },
+      {
+        pattern: "～は ～から ～までです",
+        vietnamese: "~ từ ~ đến ~",
+        english: "~ is from ~ to ~",
+        explanation: "Nói về khung giờ hoạt động của một địa điểm.",
+        examples: [
+          {
+            japanese: "ぎんこうは 9じから 3じまでです。",
+            vietnamese: "Ngân hàng từ 9 giờ đến 3 giờ.",
+            english: "The bank is (open) from 9 to 3."
+          },
+          {
+            japanese: "デパートは 10じから 8じまでです。",
+            vietnamese: "Cửa hàng bách hóa từ 10 giờ đến 8 giờ.",
+            english: "The department store is (open) from 10 to 8."
+          }
+        ]
+      }
     ]
   },
 
@@ -1628,6 +1781,90 @@ const VOCABULARY_DATA = [
         vietnamese: "tiếp theo",
         english: "next",
         example: ""
+      }
+    ],
+    grammar: [
+      {
+        pattern: "～へ 行きます/来ます/帰ります",
+        vietnamese: "đi/đến/về ~",
+        english: "go/come/return to ~",
+        explanation: "Trợ từ 'へ' (đọc là 'e') chỉ hướng di chuyển.",
+        examples: [
+          {
+            japanese: "わたしは がっこうへ いきます。",
+            vietnamese: "Tôi đi đến trường.",
+            english: "I go to school."
+          },
+          {
+            japanese: "にちようびに どこへ いきますか。",
+            vietnamese: "Chủ nhật bạn đi đâu?",
+            english: "Where do you go on Sunday?"
+          },
+          {
+            japanese: "7じに うちへ かえります。",
+            vietnamese: "Tôi về nhà lúc 7 giờ.",
+            english: "I return home at 7 o'clock."
+          }
+        ]
+      },
+      {
+        pattern: "～で 行きます/来ます/帰ります",
+        vietnamese: "đi/đến/về bằng ~",
+        english: "go/come/return by ~",
+        explanation: "Trợ từ 'で' chỉ phương tiện di chuyển.",
+        examples: [
+          {
+            japanese: "でんしゃで かいしゃへ いきます。",
+            vietnamese: "Tôi đi công ty bằng tàu điện.",
+            english: "I go to the company by train."
+          },
+          {
+            japanese: "ひこうきで にほんへ きました。",
+            vietnamese: "Tôi đến Nhật bằng máy bay.",
+            english: "I came to Japan by airplane."
+          },
+          {
+            japanese: "あるいて うちへ かえります。",
+            vietnamese: "Tôi về nhà bằng cách đi bộ.",
+            english: "I return home on foot."
+          }
+        ]
+      },
+      {
+        pattern: "～と ～へ 行きます",
+        vietnamese: "đi ~ với ~",
+        english: "go to ~ with ~",
+        explanation: "Trợ từ 'と' chỉ người đồng hành.",
+        examples: [
+          {
+            japanese: "ともだちと えいがを みに いきます。",
+            vietnamese: "Tôi đi xem phim với bạn.",
+            english: "I go to see a movie with my friend."
+          },
+          {
+            japanese: "だれと きましたか。",
+            vietnamese: "Bạn đến với ai?",
+            english: "Who did you come with?"
+          }
+        ]
+      },
+      {
+        pattern: "いつ ～ますか",
+        vietnamese: "khi nào ~?",
+        english: "when ~?",
+        explanation: "Câu hỏi về thời gian. 'いつ' nghĩa là 'khi nào'. Không dùng 'に' sau 'いつ'.",
+        examples: [
+          {
+            japanese: "いつ にほんへ きましたか。",
+            vietnamese: "Khi nào bạn đến Nhật?",
+            english: "When did you come to Japan?"
+          },
+          {
+            japanese: "いつ くにへ かえりますか。",
+            vietnamese: "Khi nào bạn về nước?",
+            english: "When will you return to your country?"
+          }
+        ]
       }
     ]
   },
@@ -1947,6 +2184,85 @@ const VOCABULARY_DATA = [
         english: "I understand",
         example: ""
       }
+    ],
+    grammar: [
+      {
+        pattern: "～を ～ます",
+        vietnamese: "làm ~",
+        english: "do ~ (verb)",
+        explanation: "Trợ từ 'を' đánh dấu tân ngữ (object) của động từ.",
+        examples: [
+          {
+            japanese: "しんぶんを よみます。",
+            vietnamese: "Tôi đọc báo.",
+            english: "I read the newspaper."
+          },
+          {
+            japanese: "コーヒーを のみます。",
+            vietnamese: "Tôi uống cà phê.",
+            english: "I drink coffee."
+          },
+          {
+            japanese: "てがみを かきます。",
+            vietnamese: "Tôi viết thư.",
+            english: "I write a letter."
+          }
+        ]
+      },
+      {
+        pattern: "～で ～を ～ます",
+        vietnamese: "làm ~ ở ~",
+        english: "do ~ at/in ~",
+        explanation: "Trợ từ 'で' chỉ địa điểm diễn ra hành động.",
+        examples: [
+          {
+            japanese: "としょかんで ほんを よみます。",
+            vietnamese: "Tôi đọc sách ở thư viện.",
+            english: "I read books at the library."
+          },
+          {
+            japanese: "うちで テレビを みます。",
+            vietnamese: "Tôi xem TV ở nhà.",
+            english: "I watch TV at home."
+          }
+        ]
+      },
+      {
+        pattern: "なにを ～ますか",
+        vietnamese: "làm cái gì?",
+        english: "what do you ~?",
+        explanation: "Câu hỏi về đối tượng của hành động.",
+        examples: [
+          {
+            japanese: "あさ なにを たべますか。",
+            vietnamese: "Buổi sáng bạn ăn gì?",
+            english: "What do you eat in the morning?"
+          },
+          {
+            japanese: "どこで しんぶんを かいますか。",
+            vietnamese: "Bạn mua báo ở đâu?",
+            english: "Where do you buy the newspaper?"
+          }
+        ]
+      },
+      {
+        pattern: "～を ～ましょう",
+        vietnamese: "hãy cùng làm ~",
+        english: "let's ~",
+        explanation: "Rủ người khác cùng làm việc gì đó.",
+        examples: [
+          {
+            japanese: "いっしょに コーヒーを のみましょう。",
+            vietnamese: "Hãy cùng uống cà phê nào.",
+            english: "Let's drink coffee together."
+          },
+          {
+            japanese: "きょうとへ いきましょう。",
+            vietnamese: "Hãy đi Kyoto nào.",
+            english: "Let's go to Kyoto."
+          }
+        ]
+      }
     ]
   },
 
@@ -2145,6 +2461,80 @@ const VOCABULARY_DATA = [
         vietnamese: "chưa, vẫn chưa",
         english: "Not yet",
         example: "いいえ、まだです。"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "～に ～を あげます",
+        vietnamese: "cho ~ cái ~",
+        english: "give ~ to ~",
+        explanation: "Trợ từ 'に' chỉ người nhận, 'を' chỉ vật được cho.",
+        examples: [
+          {
+            japanese: "わたしは ともだちに プレゼントを あげます。",
+            vietnamese: "Tôi cho bạn quà.",
+            english: "I give a present to my friend."
+          },
+          {
+            japanese: "ちちに ネクタイを あげました。",
+            vietnamese: "Tôi đã cho bố cái cà vạt.",
+            english: "I gave my father a necktie."
+          }
+        ]
+      },
+      {
+        pattern: "～に ～を もらいます",
+        vietnamese: "nhận ~ từ ~",
+        english: "receive ~ from ~",
+        explanation: "Trợ từ 'に' hoặc 'から' chỉ người cho, 'を' chỉ vật nhận được.",
+        examples: [
+          {
+            japanese: "わたしは やまださんに はなを もらいました。",
+            vietnamese: "Tôi nhận hoa từ anh Yamada.",
+            english: "I received flowers from Yamada."
+          },
+          {
+            japanese: "たんじょうびに ははから プレゼントを もらいました。",
+            vietnamese: "Sinh nhật tôi nhận quà từ mẹ.",
+            english: "I received a present from my mother on my birthday."
+          }
+        ]
+      },
+      {
+        pattern: "～に ～を かします/かります",
+        vietnamese: "cho mượn/mượn ~ của ~",
+        english: "lend/borrow ~ to/from ~",
+        explanation: "かします = cho mượn, かります = mượn/vay.",
+        examples: [
+          {
+            japanese: "わたしは たなかさんに ほんを かしました。",
+            vietnamese: "Tôi đã cho Tanaka mượn sách.",
+            english: "I lent a book to Tanaka."
+          },
+          {
+            japanese: "ともだちに CDを かりました。",
+            vietnamese: "Tôi mượn CD của bạn.",
+            english: "I borrowed a CD from my friend."
+          }
+        ]
+      },
+      {
+        pattern: "もう ～ました",
+        vietnamese: "đã ~ rồi",
+        english: "already ~",
+        explanation: "'もう' với thì quá khứ biểu thị hành động đã hoàn thành.",
+        examples: [
+          {
+            japanese: "もう ひるごはんを たべましたか。",
+            vietnamese: "Bạn đã ăn trưa rồi chưa?",
+            english: "Have you already eaten lunch?"
+          },
+          {
+            japanese: "はい、もう たべました。",
+            vietnamese: "Vâng, tôi đã ăn rồi.",
+            english: "Yes, I've already eaten."
+          }
+        ]
       }
     ]
   },
@@ -2457,6 +2847,108 @@ const VOCABULARY_DATA = [
         english: "Not very (with negative)",
         example: "あまり　おもしろくないです。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "い-adjective + です",
+        vietnamese: "Tính từ đuôi い",
+        english: "i-adjective + desu",
+        explanation: "Tính từ đuôi い trực tiếp bổ nghĩa cho danh từ hoặc đứng cuối câu với です.",
+        examples: [
+          {
+            japanese: "この ほんは おもしろいです。",
+            vietnamese: "Cuốn sách này thú vị.",
+            english: "This book is interesting."
+          },
+          {
+            japanese: "あたらしい くつを かいました。",
+            vietnamese: "Tôi đã mua giày mới.",
+            english: "I bought new shoes."
+          },
+          {
+            japanese: "きょうは あついです。",
+            vietnamese: "Hôm nay nóng.",
+            english: "It's hot today."
+          }
+        ]
+      },
+      {
+        pattern: "な-adjective + です",
+        vietnamese: "Tính từ đuôi な",
+        english: "na-adjective + desu",
+        explanation: "Tính từ đuôi な cần thêm 'な' khi bổ nghĩa trực tiếp cho danh từ, nhưng bỏ 'な' khi đứng cuối câu với です.",
+        examples: [
+          {
+            japanese: "ふじさんは きれいです。",
+            vietnamese: "Núi Phú Sĩ đẹp.",
+            english: "Mt. Fuji is beautiful."
+          },
+          {
+            japanese: "しずかな ところです。",
+            vietnamese: "Là nơi yên tĩnh.",
+            english: "It's a quiet place."
+          },
+          {
+            japanese: "にほんごは べんりです。",
+            vietnamese: "Tiếng Nhật tiện lợi.",
+            english: "Japanese is convenient."
+          }
+        ]
+      },
+      {
+        pattern: "～は ～くないです",
+        vietnamese: "~ không ~",
+        english: "~ is not ~",
+        explanation: "Phủ định của tính từ đuôi い: bỏ い, thêm くないです.",
+        examples: [
+          {
+            japanese: "この くつは たかくないです。",
+            vietnamese: "Đôi giày này không đắt.",
+            english: "These shoes are not expensive."
+          },
+          {
+            japanese: "あまり おもしろくないです。",
+            vietnamese: "Không mấy thú vị.",
+            english: "It's not very interesting."
+          }
+        ]
+      },
+      {
+        pattern: "～は ～じゃ ありません",
+        vietnamese: "~ không ~",
+        english: "~ is not ~",
+        explanation: "Phủ định của tính từ đuôi な và danh từ.",
+        examples: [
+          {
+            japanese: "あまり きれいじゃ ありません。",
+            vietnamese: "Không mấy đẹp.",
+            english: "It's not very beautiful."
+          },
+          {
+            japanese: "ここは しずかじゃ ありません。",
+            vietnamese: "Đây không yên tĩnh.",
+            english: "This place is not quiet."
+          }
+        ]
+      },
+      {
+        pattern: "～は どうですか",
+        vietnamese: "~ thế nào?",
+        english: "How is ~?",
+        explanation: "Câu hỏi về tính chất, trạng thái của sự vật.",
+        examples: [
+          {
+            japanese: "にほんの せいかつは どうですか。",
+            vietnamese: "Cuộc sống ở Nhật thế nào?",
+            english: "How is life in Japan?"
+          },
+          {
+            japanese: "この レストランは どうですか。",
+            vietnamese: "Nhà hàng này thế nào?",
+            english: "How is this restaurant?"
+          }
+        ]
+      }
     ]
   },
 
@@ -2711,6 +3203,108 @@ const VOCABULARY_DATA = [
         vietnamese: "rất tiếc nhưng...",
         english: "I'm sorry but...",
         example: "残念ですが、行きません。"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "～が 好きです/嫌いです",
+        vietnamese: "thích/ghét ~",
+        english: "like/dislike ~",
+        explanation: "Trợ từ 'が' đánh dấu đối tượng của sở thích, cảm xúc, khả năng.",
+        examples: [
+          {
+            japanese: "わたしは にほんりょうりが すきです。",
+            vietnamese: "Tôi thích món ăn Nhật.",
+            english: "I like Japanese food."
+          },
+          {
+            japanese: "やさいが きらいです。",
+            vietnamese: "Tôi ghét rau.",
+            english: "I dislike vegetables."
+          },
+          {
+            japanese: "あなたは どんな スポーツが すきですか。",
+            vietnamese: "Bạn thích thể thao nào?",
+            english: "What sports do you like?"
+          }
+        ]
+      },
+      {
+        pattern: "～が わかります",
+        vietnamese: "hiểu ~",
+        english: "understand ~",
+        explanation: "わかります (hiểu) dùng với trợ từ 'が', không dùng 'を'.",
+        examples: [
+          {
+            japanese: "にほんごが わかりますか。",
+            vietnamese: "Bạn hiểu tiếng Nhật không?",
+            english: "Do you understand Japanese?"
+          },
+          {
+            japanese: "すこし わかります。",
+            vietnamese: "Tôi hiểu một chút.",
+            english: "I understand a little."
+          }
+        ]
+      },
+      {
+        pattern: "～が できます",
+        vietnamese: "có thể làm ~, biết ~",
+        english: "can do ~",
+        explanation: "できます chỉ khả năng làm việc gì đó.",
+        examples: [
+          {
+            japanese: "ピアノが できます。",
+            vietnamese: "Tôi biết chơi piano.",
+            english: "I can play the piano."
+          },
+          {
+            japanese: "りょうりが できますか。",
+            vietnamese: "Bạn có biết nấu ăn không?",
+            english: "Can you cook?"
+          }
+        ]
+      },
+      {
+        pattern: "どうして/なぜ ～ですか",
+        vietnamese: "tại sao ~?",
+        english: "why ~?",
+        explanation: "Câu hỏi về lý do.",
+        examples: [
+          {
+            japanese: "どうして にほんごを べんきょうしますか。",
+            vietnamese: "Tại sao bạn học tiếng Nhật?",
+            english: "Why do you study Japanese?"
+          },
+          {
+            japanese: "にほんの かいしゃで はたらきたいですから。",
+            vietnamese: "Vì tôi muốn làm việc ở công ty Nhật.",
+            english: "Because I want to work at a Japanese company."
+          }
+        ]
+      },
+      {
+        pattern: "よく/だいたい/たくさん/すこし/あまり/全然",
+        vietnamese: "Các trạng từ chỉ mức độ",
+        english: "Adverbs of frequency/degree",
+        explanation: "よく (thường), だいたい (đại khái), たくさん (nhiều), すこし (một chút), あまり (không lắm - với phủ định), ぜんぜん (hoàn toàn không - với phủ định).",
+        examples: [
+          {
+            japanese: "よく えいがを みます。",
+            vietnamese: "Tôi thường xem phim.",
+            english: "I often watch movies."
+          },
+          {
+            japanese: "あまり わかりません。",
+            vietnamese: "Tôi không hiểu lắm.",
+            english: "I don't understand very much."
+          },
+          {
+            japanese: "ぜんぜん できません。",
+            vietnamese: "Tôi hoàn toàn không biết.",
+            english: "I can't do it at all."
+          }
+        ]
       }
     ]
   },
@@ -3002,6 +3596,85 @@ const VOCABULARY_DATA = [
         english: "Between",
         example: "銀行と　郵便局の　間に　花屋が　あります。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "います/あります",
+        vietnamese: "có, tồn tại",
+        english: "there is/are, to exist",
+        explanation: "います dùng cho người và động vật, あります dùng cho đồ vật và thực vật.",
+        examples: [
+          {
+            japanese: "へやに だれが いますか。",
+            vietnamese: "Ai đang ở trong phòng?",
+            english: "Who is in the room?"
+          },
+          {
+            japanese: "つくえの うえに ほんが あります。",
+            vietnamese: "Trên bàn có sách.",
+            english: "There is a book on the desk."
+          },
+          {
+            japanese: "にわに ねこが います。",
+            vietnamese: "Trong vườn có mèo.",
+            english: "There is a cat in the garden."
+          }
+        ]
+      },
+      {
+        pattern: "～に ～が います/あります",
+        vietnamese: "ở ~ có ~",
+        english: "there is ~ in/at/on ~",
+        explanation: "Trợ từ 'に' chỉ vị trí tồn tại, 'が' đánh dấu chủ ngữ.",
+        examples: [
+          {
+            japanese: "こうえんに こどもが たくさん います。",
+            vietnamese: "Trong công viên có nhiều trẻ em.",
+            english: "There are many children in the park."
+          },
+          {
+            japanese: "つくえの したに ねこが います。",
+            vietnamese: "Dưới bàn có mèo.",
+            english: "There is a cat under the desk."
+          }
+        ]
+      },
+      {
+        pattern: "～は ～に います/あります",
+        vietnamese: "~ ở ~",
+        english: "~ is in/at/on ~",
+        explanation: "Câu trúc này hỏi hoặc nói về vị trí của một đối tượng cụ thể.",
+        examples: [
+          {
+            japanese: "やまださんは どこに いますか。",
+            vietnamese: "Anh Yamada ở đâu?",
+            english: "Where is Yamada?"
+          },
+          {
+            japanese: "かぎは つくえの なかに あります。",
+            vietnamese: "Chìa khóa ở trong bàn.",
+            english: "The key is in the desk."
+          }
+        ]
+      },
+      {
+        pattern: "～の 上/下/中/前/後ろ/隣/近く",
+        vietnamese: "trên/dưới/trong/trước/sau/bên cạnh/gần ~",
+        english: "on/under/in/in front of/behind/next to/near ~",
+        explanation: "Các từ chỉ vị trí tương đối.",
+        examples: [
+          {
+            japanese: "ほんは つくえの うえに あります。",
+            vietnamese: "Sách ở trên bàn.",
+            english: "The book is on the desk."
+          },
+          {
+            japanese: "ぎんこうは デパートの となりに あります。",
+            vietnamese: "Ngân hàng ở bên cạnh trung tâm thương mại.",
+            english: "The bank is next to the department store."
+          }
+        ]
+      }
     ]
   },
 
@@ -3285,6 +3958,100 @@ const VOCABULARY_DATA = [
         english: "~ year(s)",
         example: ""
       }
+    ],
+    grammar: [
+      {
+        pattern: "〜枚（まい）、〜本（ほん）、〜個（こ）",
+        vietnamese: "Trợ số từ: ~ tờ/tấm, ~ cây/chai, ~ cái",
+        english: "Counters: flat objects, long objects, small objects",
+        explanation: "Trợ số từ dùng để đếm các loại đồ vật khác nhau. 枚 đếm vật mỏng phẳng (giấy, tem), 本 đếm vật dài (bút, chai), 個 đếm vật nhỏ tròn (trái cây).",
+        examples: [
+          {
+            japanese: "切手を　5枚　ください。",
+            vietnamese: "Cho tôi 5 cái tem.",
+            english: "Please give me 5 stamps."
+          },
+          {
+            japanese: "ペンが　3本　あります。",
+            vietnamese: "Có 3 cây bút.",
+            english: "There are 3 pens."
+          },
+          {
+            japanese: "りんごを　2個　買いました。",
+            vietnamese: "Tôi đã mua 2 quả táo.",
+            english: "I bought 2 apples."
+          }
+        ]
+      },
+      {
+        pattern: "いくつ / 何〜（なん〜）",
+        vietnamese: "Bao nhiêu (tuổi/cái), bao nhiêu ~",
+        english: "How many, how old",
+        explanation: "'いくつ' hỏi số lượng chung hoặc tuổi (không chính thức). '何〜' kết hợp với trợ số từ để hỏi số lượng cụ thể (何枚、何本、何個).",
+        examples: [
+          {
+            japanese: "りんごを　いくつ　買いましたか。",
+            vietnamese: "Bạn đã mua bao nhiêu quả táo?",
+            english: "How many apples did you buy?"
+          },
+          {
+            japanese: "何枚　ありますか。",
+            vietnamese: "Có bao nhiêu tờ?",
+            english: "How many (sheets) are there?"
+          },
+          {
+            japanese: "お子さんは　おいくつですか。",
+            vietnamese: "Con bạn bao nhiêu tuổi?",
+            english: "How old is your child?"
+          }
+        ]
+      },
+      {
+        pattern: "家族の呼び方",
+        vietnamese: "Cách gọi thành viên gia đình",
+        english: "Family terms (humble vs. respectful)",
+        explanation: "Tiếng Nhật phân biệt cách gọi gia đình mình (khiêm tốn) và gia đình người khác (tôn trọng). VD: 兄 (anh trai mình) vs お兄さん (anh trai người khác).",
+        examples: [
+          {
+            japanese: "兄は　会社員です。",
+            vietnamese: "Anh trai tôi là nhân viên công ty.",
+            english: "My older brother is a company employee."
+          },
+          {
+            japanese: "お兄さんは　何人　いますか。",
+            vietnamese: "Bạn có mấy anh trai?",
+            english: "How many older brothers do you have?"
+          },
+          {
+            japanese: "妹が　2人　います。",
+            vietnamese: "Tôi có 2 em gái.",
+            english: "I have 2 younger sisters."
+          }
+        ]
+      },
+      {
+        pattern: "〜人（〜にん）",
+        vietnamese: "~ người (đếm người)",
+        english: "Counter for people",
+        explanation: "Trợ số từ đếm người. Chú ý: 1人 (ひとり), 2人 (ふたり), 3人 (さんにん), 4人 (よにん). Hỏi: 何人 (なんにん)。",
+        examples: [
+          {
+            japanese: "家族は　何人ですか。",
+            vietnamese: "Gia đình bạn có mấy người?",
+            english: "How many people are in your family?"
+          },
+          {
+            japanese: "家族は　4人です。",
+            vietnamese: "Gia đình tôi có 4 người.",
+            english: "There are 4 people in my family."
+          },
+          {
+            japanese: "友達が　3人　来ます。",
+            vietnamese: "Có 3 người bạn sẽ đến.",
+            english: "Three friends will come."
+          }
+        ]
+      }
     ]
   },
 
@@ -3519,6 +4286,100 @@ const VOCABULARY_DATA = [
         english: "Which (of three or more)",
         example: ""
       }
+    ],
+    grammar: [
+      {
+        pattern: "〜ました / 〜ませんでした",
+        vietnamese: "~ đã ~ / ~ đã không ~",
+        english: "Past tense (polite form)",
+        explanation: "Thì quá khứ của động từ lịch sự. Chuyển ます thành ました (khẳng định) hoặc ませんでした (phủ định).",
+        examples: [
+          {
+            japanese: "昨日　映画を　見ました。",
+            vietnamese: "Hôm qua tôi đã xem phim.",
+            english: "I watched a movie yesterday."
+          },
+          {
+            japanese: "朝ごはんを　食べませんでした。",
+            vietnamese: "Tôi đã không ăn sáng.",
+            english: "I didn't eat breakfast."
+          },
+          {
+            japanese: "先週　京都に　行きました。",
+            vietnamese: "Tuần trước tôi đã đi Kyoto.",
+            english: "I went to Kyoto last week."
+          }
+        ]
+      },
+      {
+        pattern: "い形容詞の過去形（〜かったです / 〜くなかったです）",
+        vietnamese: "Thì quá khứ của tính từ đuôi い",
+        english: "Past tense of い-adjectives",
+        explanation: "Bỏ い cuối, thêm かったです (khẳng định) hoặc くなかったです (phủ định). VD: 暑い → 暑かったです / 暑くなかったです.",
+        examples: [
+          {
+            japanese: "昨日は　暑かったです。",
+            vietnamese: "Hôm qua trời nóng.",
+            english: "It was hot yesterday."
+          },
+          {
+            japanese: "試験は　難しくなかったです。",
+            vietnamese: "Kỳ thi đã không khó.",
+            english: "The exam was not difficult."
+          },
+          {
+            japanese: "映画は　面白かったです。",
+            vietnamese: "Phim đã thú vị.",
+            english: "The movie was interesting."
+          }
+        ]
+      },
+      {
+        pattern: "な形容詞の過去形（〜でした / 〜じゃありませんでした）",
+        vietnamese: "Thì quá khứ của tính từ đuôi な",
+        english: "Past tense of な-adjectives",
+        explanation: "Chuyển です thành でした (khẳng định) hoặc じゃありませんでした (phủ định). VD: 静かです → 静かでした / 静かじゃありませんでした.",
+        examples: [
+          {
+            japanese: "部屋は　静かでした。",
+            vietnamese: "Phòng đã yên tĩnh.",
+            english: "The room was quiet."
+          },
+          {
+            japanese: "先生は　親切でした。",
+            vietnamese: "Thầy giáo đã tử tế.",
+            english: "The teacher was kind."
+          },
+          {
+            japanese: "昨日は　暇じゃありませんでした。",
+            vietnamese: "Hôm qua tôi đã không rảnh.",
+            english: "I was not free yesterday."
+          }
+        ]
+      },
+      {
+        pattern: "どちらが〜ですか / どれが〜ですか",
+        vietnamese: "Cái nào ~ ? (so sánh)",
+        english: "Which one ~ ? (comparison)",
+        explanation: "どちらが dùng khi chọn giữa 2 vật, どれが dùng khi chọn trong 3+ vật. Trả lời bằng A の ほうが 〜です (A hơn).",
+        examples: [
+          {
+            japanese: "肉と　魚と　どちらが　好きですか。",
+            vietnamese: "Bạn thích thịt hay cá hơn?",
+            english: "Which do you like better, meat or fish?"
+          },
+          {
+            japanese: "この　3つの　中で　どれが　一番　いいですか。",
+            vietnamese: "Trong 3 cái này, cái nào tốt nhất?",
+            english: "Which is the best among these three?"
+          },
+          {
+            japanese: "コーヒーの　ほうが　好きです。",
+            vietnamese: "Tôi thích cà phê hơn.",
+            english: "I like coffee better."
+          }
+        ]
+      }
     ]
   },
 
@@ -3724,6 +4585,100 @@ const VOCABULARY_DATA = [
         vietnamese: "gọi món, đặt hàng",
         english: "Order",
         example: "ご注文は？"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "〜たいです",
+        vietnamese: "Muốn ~",
+        english: "Want to ~",
+        explanation: "Diễn tả mong muốn của bản thân. Động từ ます-form bỏ ます, thêm たいです. Phủ định: たくないです. VD: 行きます → 行きたいです。",
+        examples: [
+          {
+            japanese: "日本に　行きたいです。",
+            vietnamese: "Tôi muốn đi Nhật.",
+            english: "I want to go to Japan."
+          },
+          {
+            japanese: "寿司が　食べたいです。",
+            vietnamese: "Tôi muốn ăn sushi.",
+            english: "I want to eat sushi."
+          },
+          {
+            japanese: "今日は　何も　したくないです。",
+            vietnamese: "Hôm nay tôi không muốn làm gì cả.",
+            english: "I don't want to do anything today."
+          }
+        ]
+      },
+      {
+        pattern: "〜に　行きます / 来ます / 帰ります",
+        vietnamese: "Đi/Đến/Về để ~ (mục đích)",
+        english: "Go/Come/Return to do ~",
+        explanation: "Diễn tả mục đích của việc di chuyển. Dùng danh từ + に hoặc động từ ます-form (bỏ ます) + に. VD: 勉強します → 勉強しに、買います → 買いに。",
+        examples: [
+          {
+            japanese: "映画を　見に　行きます。",
+            vietnamese: "Tôi đi xem phim.",
+            english: "I go to watch a movie."
+          },
+          {
+            japanese: "日本へ　日本語を　勉強しに　来ました。",
+            vietnamese: "Tôi đến Nhật để học tiếng Nhật.",
+            english: "I came to Japan to study Japanese."
+          },
+          {
+            japanese: "昼ごはんを　食べに　帰ります。",
+            vietnamese: "Tôi về nhà để ăn trưa.",
+            english: "I return home to eat lunch."
+          }
+        ]
+      },
+      {
+        pattern: "どこかに / 何か / だれか",
+        vietnamese: "Đâu đó, cái gì đó, ai đó",
+        english: "Somewhere, something, someone",
+        explanation: "Thêm か sau từ để hỏi (どこ, 何, だれ) để tạo nghĩa 'nào đó'. Dùng trong câu khẳng định và nghi vấn. Phủ định: どこにも (đâu cũng không).",
+        examples: [
+          {
+            japanese: "休みに　どこかに　行きますか。",
+            vietnamese: "Kỳ nghỉ bạn có đi đâu đó không?",
+            english: "Will you go somewhere during the holiday?"
+          },
+          {
+            japanese: "何か　食べたいです。",
+            vietnamese: "Tôi muốn ăn gì đó.",
+            english: "I want to eat something."
+          },
+          {
+            japanese: "だれかに　会いましたか。",
+            vietnamese: "Bạn đã gặp ai đó chưa?",
+            english: "Did you meet someone?"
+          }
+        ]
+      },
+      {
+        pattern: "ご〜",
+        vietnamese: "Tiền tố lịch sự",
+        english: "Honorific prefix",
+        explanation: "Thêm ご trước danh từ Sino-Japanese (từ Hán) để tỏ lịch sự. VD: ご家族 (gia đình quý vị), ご注文 (đơn đặt hàng của quý khách).",
+        examples: [
+          {
+            japanese: "ご家族は　何人ですか。",
+            vietnamese: "Gia đình quý vị có mấy người?",
+            english: "How many people are in your family?"
+          },
+          {
+            japanese: "ご注文は？",
+            vietnamese: "Quý khách gọi gì ạ?",
+            english: "What would you like to order?"
+          },
+          {
+            japanese: "ご住所を　お願いします。",
+            vietnamese: "Xin cho biết địa chỉ của quý vị.",
+            english: "May I have your address, please?"
+          }
+        ]
       }
     ]
   },
@@ -3973,6 +4928,100 @@ const VOCABULARY_DATA = [
         english: "Excuse me, but...",
         example: "すみませんが、写真を撮ってください。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "〜てください",
+        vietnamese: "Làm ơn ~, hãy ~",
+        english: "Please do ~",
+        explanation: "Dùng để nhờ vả hoặc yêu cầu lịch sự. Động từ て-form + ください. VD: 見ます → 見てください, 食べます → 食べてください。",
+        examples: [
+          {
+            japanese: "ちょっと　待ってください。",
+            vietnamese: "Hãy đợi một chút.",
+            english: "Please wait a moment."
+          },
+          {
+            japanese: "窓を　開けてください。",
+            vietnamese: "Làm ơn mở cửa sổ.",
+            english: "Please open the window."
+          },
+          {
+            japanese: "ここに　名前を　書いてください。",
+            vietnamese: "Hãy viết tên vào đây.",
+            english: "Please write your name here."
+          }
+        ]
+      },
+      {
+        pattern: "〜ましょう / 〜ませんか",
+        vietnamese: "Hãy cùng ~, ~ nhé / ~ không? (mời)",
+        english: "Let's ~ / Won't you ~ ?",
+        explanation: "ましょう: rủ rê, đề nghị cùng làm. ませんか: mời mọc lịch sự hơn. VD: 行きます → 行きましょう / 行きませんか。",
+        examples: [
+          {
+            japanese: "一緒に　昼ごはんを　食べましょう。",
+            vietnamese: "Hãy cùng ăn trưa nhé.",
+            english: "Let's eat lunch together."
+          },
+          {
+            japanese: "映画を　見に　行きませんか。",
+            vietnamese: "Chúng ta đi xem phim không?",
+            english: "Won't you go to see a movie?"
+          },
+          {
+            japanese: "ちょっと　休みましょう。",
+            vietnamese: "Nghỉ một chút nhé.",
+            english: "Let's take a break."
+          }
+        ]
+      },
+      {
+        pattern: "て形の作り方",
+        vietnamese: "Cách chia động từ thành thể て",
+        english: "How to form て-form",
+        explanation: "Nhóm I: 〜って、〜いて、〜いで、〜して、〜んで. Nhóm II: bỏ る thêm て. Nhóm III: します→して, 来ます→来て. VD: 買う→買って, 食べる→食べて。",
+        examples: [
+          {
+            japanese: "買います　→　買って",
+            vietnamese: "mua → mua (て)",
+            english: "buy → buying (te-form)"
+          },
+          {
+            japanese: "食べます　→　食べて",
+            vietnamese: "ăn → ăn (て)",
+            english: "eat → eating (te-form)"
+          },
+          {
+            japanese: "来ます　→　来（き）て",
+            vietnamese: "đến → đến (て)",
+            english: "come → coming (te-form)"
+          }
+        ]
+      },
+      {
+        pattern: "〜てから、〜",
+        vietnamese: "Sau khi ~, thì ~",
+        english: "After doing ~, ~",
+        explanation: "Diễn tả hành động xảy ra theo thứ tự. Hành động đầu tiên dùng て-form + から, sau đó là hành động thứ hai.",
+        examples: [
+          {
+            japanese: "宿題を　してから、テレビを　見ます。",
+            vietnamese: "Sau khi làm bài tập, tôi xem TV.",
+            english: "After doing homework, I watch TV."
+          },
+          {
+            japanese: "手を　洗ってから、ご飯を　食べます。",
+            vietnamese: "Sau khi rửa tay, tôi ăn cơm.",
+            english: "After washing hands, I eat."
+          },
+          {
+            japanese: "シャワーを　浴びてから、寝ます。",
+            vietnamese: "Sau khi tắm, tôi đi ngủ.",
+            english: "After taking a shower, I go to bed."
+          }
+        ]
+      }
     ]
   },
 
@@ -4207,6 +5256,100 @@ const VOCABULARY_DATA = [
         english: "Absence from home",
         example: "田中さんは留守です。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "〜てもいいです",
+        vietnamese: "~ cũng được, có thể ~ (xin phép)",
+        english: "May I ~, It's okay to ~",
+        explanation: "Xin phép hoặc cho phép làm gì đó. Động từ て-form + もいいです. Phủ định: てはいけません (không được ~).",
+        examples: [
+          {
+            japanese: "ここで　写真を　撮ってもいいですか。",
+            vietnamese: "Chụp ảnh ở đây có được không?",
+            english: "May I take photos here?"
+          },
+          {
+            japanese: "はい、いいですよ。",
+            vietnamese: "Vâng, được ạ.",
+            english: "Yes, you may."
+          },
+          {
+            japanese: "辞書を　使ってもいいです。",
+            vietnamese: "Bạn có thể dùng từ điển.",
+            english: "You may use a dictionary."
+          }
+        ]
+      },
+      {
+        pattern: "〜てはいけません",
+        vietnamese: "Không được ~, cấm ~",
+        english: "Must not ~, It's not allowed to ~",
+        explanation: "Cấm đoán, không được phép làm gì đó. Động từ て-form + はいけません. Có thể viết tắt: ちゃいけません (thân mật).",
+        examples: [
+          {
+            japanese: "ここで　たばこを　吸ってはいけません。",
+            vietnamese: "Không được hút thuốc ở đây.",
+            english: "You must not smoke here."
+          },
+          {
+            japanese: "遅刻してはいけません。",
+            vietnamese: "Không được đến muộn.",
+            english: "You must not be late."
+          },
+          {
+            japanese: "試験中に　話してはいけません。",
+            vietnamese: "Trong khi thi không được nói chuyện.",
+            english: "You must not talk during the exam."
+          }
+        ]
+      },
+      {
+        pattern: "〜ています",
+        vietnamese: "Đang ~, đã ~ (trạng thái hiện tại)",
+        english: "Be doing ~, have done ~ (progressive/resultative)",
+        explanation: "Diễn tả hành động đang diễn ra hoặc trạng thái kết quả. Động từ て-form + います. VD: 読んでいます (đang đọc), 知っています (đã biết).",
+        examples: [
+          {
+            japanese: "今　何を　していますか。",
+            vietnamese: "Bây giờ bạn đang làm gì?",
+            english: "What are you doing now?"
+          },
+          {
+            japanese: "本を　読んでいます。",
+            vietnamese: "Tôi đang đọc sách.",
+            english: "I am reading a book."
+          },
+          {
+            japanese: "田中さんを　知っていますか。",
+            vietnamese: "Bạn có biết anh Tanaka không?",
+            english: "Do you know Mr. Tanaka?"
+          }
+        ]
+      },
+      {
+        pattern: "〜ています（状態）",
+        vietnamese: "Trạng thái đã ~ (kết quả còn lại)",
+        english: "Resultative state (completed action with lasting result)",
+        explanation: "Một số động từ dùng ています để chỉ trạng thái kết quả còn lại. VD: 結婚しています (đã kết hôn), 住んでいます (đang sống), 知っています (đã biết).",
+        examples: [
+          {
+            japanese: "私は　結婚しています。",
+            vietnamese: "Tôi đã kết hôn.",
+            english: "I am married."
+          },
+          {
+            japanese: "東京に　住んでいます。",
+            vietnamese: "Tôi sống ở Tokyo.",
+            english: "I live in Tokyo."
+          },
+          {
+            japanese: "この　漢字を　知っていますか。",
+            vietnamese: "Bạn có biết chữ Hán này không?",
+            english: "Do you know this kanji?"
+          }
+        ]
+      }
     ]
   },
 
@@ -4427,6 +5570,100 @@ const VOCABULARY_DATA = [
         english: "What happened? / What's wrong?",
         example: "どうしましたか。…頭が痛いです。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "〜て、〜て、〜",
+        vietnamese: "~, ~, ~ (nối động từ)",
+        english: "~ and ~ and ~ (connecting verbs)",
+        explanation: "Nối nhiều động từ theo thứ tự. Các động từ trước dùng て-form, động từ cuối cùng chia theo thời gian. VD: 起きて、顔を洗って、朝ごはんを食べます。",
+        examples: [
+          {
+            japanese: "朝　起きて、顔を　洗って、朝ごはんを　食べます。",
+            vietnamese: "Sáng tôi dậy, rửa mặt, và ăn sáng.",
+            english: "In the morning, I get up, wash my face, and eat breakfast."
+          },
+          {
+            japanese: "京都へ　行って、お寺を　見て、帰りました。",
+            vietnamese: "Tôi đi Kyoto, xem chùa, và về.",
+            english: "I went to Kyoto, saw temples, and came back."
+          },
+          {
+            japanese: "電車に　乗って、新宿で　降ります。",
+            vietnamese: "Tôi đi tàu và xuống ở Shinjuku.",
+            english: "I take the train and get off at Shinjuku."
+          }
+        ]
+      },
+      {
+        pattern: "〜てから、〜",
+        vietnamese: "Sau khi ~, thì ~",
+        english: "After doing ~, ~",
+        explanation: "Diễn tả hành động theo thứ tự rõ ràng. Hành động thứ nhất dùng て-form + から, sau đó là hành động thứ hai.",
+        examples: [
+          {
+            japanese: "宿題を　してから、遊びます。",
+            vietnamese: "Sau khi làm bài tập, tôi chơi.",
+            english: "After doing homework, I play."
+          },
+          {
+            japanese: "昼ごはんを　食べてから、昼寝を　します。",
+            vietnamese: "Sau khi ăn trưa, tôi ngủ trưa.",
+            english: "After eating lunch, I take a nap."
+          },
+          {
+            japanese: "手を　洗ってから、食べてください。",
+            vietnamese: "Sau khi rửa tay, hãy ăn.",
+            english: "Please eat after washing your hands."
+          }
+        ]
+      },
+      {
+        pattern: "〜から",
+        vietnamese: "Vì ~, bởi vì ~ (lý do)",
+        english: "Because ~, since ~",
+        explanation: "Diễn tả lý do. Câu lý do + から, câu kết quả. Dùng với cả động từ/tính từ/danh từ. Câu lý do giữ nguyên dạng lịch sự hoặc thường.",
+        examples: [
+          {
+            japanese: "雨が　降りますから、出かけません。",
+            vietnamese: "Vì trời mưa nên tôi không ra ngoài.",
+            english: "Because it's raining, I won't go out."
+          },
+          {
+            japanese: "安いですから、これを　買います。",
+            vietnamese: "Vì rẻ nên tôi mua cái này.",
+            english: "Because it's cheap, I'll buy this."
+          },
+          {
+            japanese: "時間が　ありませんから、タクシーで　行きます。",
+            vietnamese: "Vì không có thời gian nên tôi đi taxi.",
+            english: "Because I don't have time, I'll go by taxi."
+          }
+        ]
+      },
+      {
+        pattern: "それから",
+        vietnamese: "Sau đó, rồi thì",
+        english: "Then, after that",
+        explanation: "Từ nối diễn tả trình tự các hành động. Khác với てから (sau khi ~), それから là từ nối đứng đầu câu mới.",
+        examples: [
+          {
+            japanese: "朝ごはんを　食べます。それから、学校へ　行きます。",
+            vietnamese: "Tôi ăn sáng. Sau đó đi học.",
+            english: "I eat breakfast. Then I go to school."
+          },
+          {
+            japanese: "買い物を　しました。それから、映画を　見ました。",
+            vietnamese: "Tôi đi mua sắm. Sau đó xem phim.",
+            english: "I went shopping. Then I watched a movie."
+          },
+          {
+            japanese: "シャワーを　浴びます。それから、寝ます。",
+            vietnamese: "Tôi tắm. Sau đó ngủ.",
+            english: "I take a shower. Then I go to bed."
+          }
+        ]
+      }
     ]
   },
 
@@ -4590,6 +5827,100 @@ const VOCABULARY_DATA = [
         vietnamese: "xin đừng ~",
         english: "Please don't ~",
         example: "ここで写真を撮らないでください。"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "ない形",
+        vietnamese: "Thể ない (phủ định thường)",
+        english: "ない-form (plain negative)",
+        explanation: "Dạng phủ định thường của động từ. Nhóm I: 〜あない. Nhóm II: bỏ る thêm ない. Nhóm III: しない, 来（こ）ない. VD: 行く→行かない, 食べる→食べない。",
+        examples: [
+          {
+            japanese: "行きます　→　行かない",
+            vietnamese: "đi → không đi",
+            english: "go → don't go"
+          },
+          {
+            japanese: "食べます　→　食べない",
+            vietnamese: "ăn → không ăn",
+            english: "eat → don't eat"
+          },
+          {
+            japanese: "します　→　しない",
+            vietnamese: "làm → không làm",
+            english: "do → don't do"
+          }
+        ]
+      },
+      {
+        pattern: "〜ないでください",
+        vietnamese: "Xin đừng ~",
+        english: "Please don't ~",
+        explanation: "Yêu cầu lịch sự đừng làm gì. Động từ ない-form + でください. VD: 行く → 行かないでください。",
+        examples: [
+          {
+            japanese: "ここで　写真を　撮らないでください。",
+            vietnamese: "Xin đừng chụp ảnh ở đây.",
+            english: "Please don't take photos here."
+          },
+          {
+            japanese: "遅刻しないでください。",
+            vietnamese: "Xin đừng đến muộn.",
+            english: "Please don't be late."
+          },
+          {
+            japanese: "心配しないでください。",
+            vietnamese: "Xin đừng lo lắng.",
+            english: "Please don't worry."
+          }
+        ]
+      },
+      {
+        pattern: "〜なければなりません",
+        vietnamese: "Phải ~, cần phải ~",
+        english: "Must ~, have to ~",
+        explanation: "Diễn tả sự cần thiết, nghĩa vụ phải làm. Động từ ない-form bỏ い + ければなりません. VD: 行く → 行かなければなりません. Có thể viết tắt: なきゃ。",
+        examples: [
+          {
+            japanese: "毎日　勉強しなければなりません。",
+            vietnamese: "Tôi phải học mỗi ngày.",
+            english: "I must study every day."
+          },
+          {
+            japanese: "9時までに　会社に　行かなければなりません。",
+            vietnamese: "Tôi phải đến công ty trước 9 giờ.",
+            english: "I must get to the office by 9 o'clock."
+          },
+          {
+            japanese: "薬を　飲まなければなりません。",
+            vietnamese: "Tôi phải uống thuốc.",
+            english: "I must take medicine."
+          }
+        ]
+      },
+      {
+        pattern: "〜なくてもいいです",
+        vietnamese: "Không cần ~, không phải ~",
+        english: "Don't have to ~, need not ~",
+        explanation: "Diễn tả không cần thiết phải làm, không có nghĩa vụ. Động từ ない-form bỏ い + くてもいいです. VD: 行く → 行かなくてもいいです。",
+        examples: [
+          {
+            japanese: "明日は　来なくてもいいです。",
+            vietnamese: "Mai không cần đến.",
+            english: "You don't have to come tomorrow."
+          },
+          {
+            japanese: "宿題を　しなくてもいいですか。",
+            vietnamese: "Không làm bài tập cũng được à?",
+            english: "Don't I have to do the homework?"
+          },
+          {
+            japanese: "急がなくてもいいです。",
+            vietnamese: "Không cần vội.",
+            english: "You don't have to hurry."
+          }
+        ]
       }
     ]
   },
@@ -4818,6 +6149,100 @@ const VOCABULARY_DATA = [
         english: "Before ~",
         example: "寝る前に、本を読みます。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "辞書形（Dictionary form）",
+        vietnamese: "Dạng từ điển (thể thường)",
+        english: "Dictionary form (plain form)",
+        explanation: "Dạng động từ gốc trong từ điển. Nhóm I: 〜う. Nhóm II: 〜る. Nhóm III: する、来（く）る. Dùng trong câu thường, trước một số cấu trúc ngữ pháp.",
+        examples: [
+          {
+            japanese: "行きます　→　行く",
+            vietnamese: "đi → đi (từ điển)",
+            english: "go → to go"
+          },
+          {
+            japanese: "食べます　→　食べる",
+            vietnamese: "ăn → ăn (từ điển)",
+            english: "eat → to eat"
+          },
+          {
+            japanese: "来ます　→　来（く）る",
+            vietnamese: "đến → đến (từ điển)",
+            english: "come → to come"
+          }
+        ]
+      },
+      {
+        pattern: "〜ことができます",
+        vietnamese: "Có thể ~, biết ~",
+        english: "Can ~, be able to ~",
+        explanation: "Diễn tả khả năng làm việc gì. Động từ từ điển + ことができます. VD: 泳ぐ → 泳ぐことができます (có thể bơi).",
+        examples: [
+          {
+            japanese: "日本語を　話すことが　できます。",
+            vietnamese: "Tôi có thể nói tiếng Nhật.",
+            english: "I can speak Japanese."
+          },
+          {
+            japanese: "ピアノを　弾くことが　できますか。",
+            vietnamese: "Bạn có thể chơi piano không?",
+            english: "Can you play the piano?"
+          },
+          {
+            japanese: "漢字を　読むことが　できません。",
+            vietnamese: "Tôi không thể đọc chữ Hán.",
+            english: "I can't read kanji."
+          }
+        ]
+      },
+      {
+        pattern: "趣味は〜ことです",
+        vietnamese: "Sở thích của tôi là ~",
+        english: "My hobby is ~",
+        explanation: "Diễn tả sở thích. Động từ từ điển + こと biến động từ thành danh từ. VD: 本を読む → 本を読むことです (sở thích là đọc sách).",
+        examples: [
+          {
+            japanese: "私の　趣味は　映画を　見ることです。",
+            vietnamese: "Sở thích của tôi là xem phim.",
+            english: "My hobby is watching movies."
+          },
+          {
+            japanese: "趣味は　音楽を　聞くことです。",
+            vietnamese: "Sở thích của tôi là nghe nhạc.",
+            english: "My hobby is listening to music."
+          },
+          {
+            japanese: "趣味は　旅行することです。",
+            vietnamese: "Sở thích của tôi là đi du lịch.",
+            english: "My hobby is traveling."
+          }
+        ]
+      },
+      {
+        pattern: "〜前に",
+        vietnamese: "Trước khi ~",
+        english: "Before ~",
+        explanation: "Diễn tả hành động trước một hành động khác. Động từ từ điển + 前に. Danh từ + の前に. VD: 寝る前に (trước khi ngủ).",
+        examples: [
+          {
+            japanese: "寝る　前に、歯を　磨きます。",
+            vietnamese: "Trước khi ngủ, tôi đánh răng.",
+            english: "Before going to bed, I brush my teeth."
+          },
+          {
+            japanese: "出かける　前に、電気を　消してください。",
+            vietnamese: "Trước khi ra ngoài, hãy tắt đèn.",
+            english: "Before going out, please turn off the lights."
+          },
+          {
+            japanese: "食事の　前に、手を　洗います。",
+            vietnamese: "Trước bữa ăn, tôi rửa tay.",
+            english: "Before meals, I wash my hands."
+          }
+        ]
+      }
     ]
   },
 
@@ -5002,6 +6427,100 @@ const VOCABULARY_DATA = [
         vietnamese: "làm những việc như ~ và ~",
         english: "Do things like ~ and ~",
         example: "休みの日は本を読んだり、映画を見たりします。"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "た形（た-form）",
+        vietnamese: "Thể た (quá khứ thường)",
+        english: "た-form (plain past)",
+        explanation: "Dạng quá khứ thường của động từ. て-form chuyển て→た, で→だ. VD: 買って→買った, 食べて→食べた, 飲んで→飲んだ.",
+        examples: [
+          {
+            japanese: "行きます　→　行った",
+            vietnamese: "đi → đã đi",
+            english: "go → went"
+          },
+          {
+            japanese: "食べます　→　食べた",
+            vietnamese: "ăn → đã ăn",
+            english: "eat → ate"
+          },
+          {
+            japanese: "来ます　→　来（き）た",
+            vietnamese: "đến → đã đến",
+            english: "come → came"
+          }
+        ]
+      },
+      {
+        pattern: "〜たことがあります",
+        vietnamese: "Đã từng ~",
+        english: "Have done ~ (experience)",
+        explanation: "Diễn tả kinh nghiệm đã làm việc gì đó trong quá khứ. Động từ た-form + ことがあります. Phủ định: ことがありません (chưa từng).",
+        examples: [
+          {
+            japanese: "富士山に　登ったことが　あります。",
+            vietnamese: "Tôi đã từng leo núi Phú Sĩ.",
+            english: "I have climbed Mt. Fuji."
+          },
+          {
+            japanese: "納豆を　食べたことが　ありますか。",
+            vietnamese: "Bạn đã từng ăn natto chưa?",
+            english: "Have you ever eaten natto?"
+          },
+          {
+            japanese: "京都に　行ったことが　ありません。",
+            vietnamese: "Tôi chưa từng đi Kyoto.",
+            english: "I have never been to Kyoto."
+          }
+        ]
+      },
+      {
+        pattern: "〜たり〜たりします",
+        vietnamese: "Làm những việc như ~ và ~",
+        english: "Do things like ~ and ~",
+        explanation: "Liệt kê một số hoạt động đại diện, ngụ ý còn nhiều hoạt động khác. Động từ た-form + り, lặp lại + します. VD: 読んだり見たりします.",
+        examples: [
+          {
+            japanese: "休みの　日は　本を　読んだり、音楽を　聞いたりします。",
+            vietnamese: "Ngày nghỉ tôi đọc sách, nghe nhạc, v.v.",
+            english: "On holidays, I read books, listen to music, and so on."
+          },
+          {
+            japanese: "週末は　映画を　見たり、買い物したりします。",
+            vietnamese: "Cuối tuần tôi xem phim, đi mua sắm, v.v.",
+            english: "On weekends, I watch movies, go shopping, and so on."
+          },
+          {
+            japanese: "朝は　散歩したり、ジョギングしたりします。",
+            vietnamese: "Buổi sáng tôi đi dạo, chạy bộ, v.v.",
+            english: "In the morning, I take walks, jog, and so on."
+          }
+        ]
+      },
+      {
+        pattern: "〜たり〜たりしました",
+        vietnamese: "Đã làm những việc như ~ và ~",
+        english: "Did things like ~ and ~ (past)",
+        explanation: "Dạng quá khứ của たり〜たりします. Diễn tả những hoạt động đã làm trong quá khứ.",
+        examples: [
+          {
+            japanese: "京都で　お寺を　見たり、お土産を　買ったりしました。",
+            vietnamese: "Ở Kyoto tôi đã xem chùa, mua quà, v.v.",
+            english: "In Kyoto, I saw temples, bought souvenirs, and so on."
+          },
+          {
+            japanese: "昨日は　掃除したり、洗濯したりしました。",
+            vietnamese: "Hôm qua tôi đã dọn dẹp, giặt giũ, v.v.",
+            english: "Yesterday, I cleaned, did laundry, and so on."
+          },
+          {
+            japanese: "パーティーで　歌ったり、踊ったりしました。",
+            vietnamese: "Ở tiệc tôi đã hát, nhảy, v.v.",
+            english: "At the party, I sang, danced, and so on."
+          }
+        ]
       }
     ]
   },
@@ -5201,6 +6720,100 @@ const VOCABULARY_DATA = [
         vietnamese: "tàm tạm, bình thường",
         english: "So-so",
         example: "最近どう？まあまあだよ。"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "普通形（Plain form）",
+        vietnamese: "Thể thông thường (thường thể)",
+        english: "Plain form (casual form)",
+        explanation: "Dạng thường của động từ/tính từ/danh từ. Động từ: 行く/行かない/行った/行かなかった. い形: 高い/高くない. な形・名詞: だ/じゃない/だった/じゃなかった.",
+        examples: [
+          {
+            japanese: "動詞：行く、行かない、行った、行かなかった",
+            vietnamese: "Động từ: đi, không đi, đã đi, đã không đi",
+            english: "Verb: go, don't go, went, didn't go"
+          },
+          {
+            japanese: "い形容詞：高い、高くない、高かった、高くなかった",
+            vietnamese: "Tính từ い: cao, không cao, đã cao, đã không cao",
+            english: "い-adjective: expensive, not expensive, was expensive, wasn't expensive"
+          },
+          {
+            japanese: "な形容詞・名詞：静かだ、静かじゃない、静かだった",
+            vietnamese: "Tính từ な/Danh từ: yên tĩnh, không yên, đã yên",
+            english: "な-adjective/Noun: quiet, not quiet, was quiet"
+          }
+        ]
+      },
+      {
+        pattern: "〜と思います",
+        vietnamese: "Tôi nghĩ rằng ~",
+        english: "I think that ~",
+        explanation: "Diễn tả ý kiến, suy nghĩ của bản thân. Dùng thể thường + と思います. Danh từ và な形 không cần だ trước と思います.",
+        examples: [
+          {
+            japanese: "明日は　雨が　降ると　思います。",
+            vietnamese: "Tôi nghĩ ngày mai sẽ mưa.",
+            english: "I think it will rain tomorrow."
+          },
+          {
+            japanese: "この　映画は　面白いと　思います。",
+            vietnamese: "Tôi nghĩ bộ phim này thú vị.",
+            english: "I think this movie is interesting."
+          },
+          {
+            japanese: "田中さんは　来ないと　思います。",
+            vietnamese: "Tôi nghĩ anh Tanaka sẽ không đến.",
+            english: "I think Mr. Tanaka won't come."
+          }
+        ]
+      },
+      {
+        pattern: "〜と言いました / 〜と言っていました",
+        vietnamese: "~ đã nói rằng ~",
+        english: "~ said that ~",
+        explanation: "Trích dẫn lời nói của người khác. Dùng thể thường + と言いました. 言っていました nhấn mạnh thời điểm trong quá khứ.",
+        examples: [
+          {
+            japanese: "田中さんは　明日　来ると　言いました。",
+            vietnamese: "Anh Tanaka đã nói rằng ngày mai sẽ đến.",
+            english: "Mr. Tanaka said he would come tomorrow."
+          },
+          {
+            japanese: "先生は　試験は　難しいと　言っていました。",
+            vietnamese: "Thầy giáo đã nói rằng bài thi khó.",
+            english: "The teacher said the exam was difficult."
+          },
+          {
+            japanese: "山田さんは　忙しいと　言っていました。",
+            vietnamese: "Chị Yamada đã nói rằng bận.",
+            english: "Ms. Yamada said she was busy."
+          }
+        ]
+      },
+      {
+        pattern: "〜でしょう",
+        vietnamese: "Có lẽ ~, chắc là ~ (suy đoán)",
+        english: "Probably ~, I suppose ~",
+        explanation: "Diễn tả suy đoán, dự đoán. Động từ/い形 thể thường + でしょう. な形・名詞bỏ だ + でしょう. Lịch sự hơn: と思います.",
+        examples: [
+          {
+            japanese: "明日は　雨が　降るでしょう。",
+            vietnamese: "Ngày mai có lẽ sẽ mưa.",
+            english: "It will probably rain tomorrow."
+          },
+          {
+            japanese: "この　本は　面白いでしょう。",
+            vietnamese: "Quyển sách này chắc thú vị.",
+            english: "This book is probably interesting."
+          },
+          {
+            japanese: "田中さんは　もう　帰ったでしょう。",
+            vietnamese: "Anh Tanaka có lẽ đã về rồi.",
+            english: "Mr. Tanaka has probably gone home already."
+          }
+        ]
       }
     ]
   },
@@ -5471,6 +7084,100 @@ const VOCABULARY_DATA = [
         english: "~ right? (seeking confirmation)",
         example: "明日は日曜日でしょう？"
       }
+    ],
+    grammar: [
+      {
+        pattern: "〜と思っています",
+        vietnamese: "Tôi đang nghĩ rằng ~ (ý định)",
+        english: "I'm thinking that ~ (intention)",
+        explanation: "Diễn tả ý định, kế hoạch đã suy nghĩ từ trước. Khác với と思います (ý kiến tức thời), と思っています nhấn mạnh sự suy nghĩ kéo dài.",
+        examples: [
+          {
+            japanese: "将来　医者に　なろうと　思っています。",
+            vietnamese: "Tôi đang nghĩ sẽ trở thành bác sĩ trong tương lai.",
+            english: "I'm thinking of becoming a doctor in the future."
+          },
+          {
+            japanese: "来年　日本に　留学しようと　思っています。",
+            vietnamese: "Tôi đang nghĩ năm sau sẽ du học Nhật.",
+            english: "I'm thinking of studying abroad in Japan next year."
+          },
+          {
+            japanese: "今度の　休みに　京都へ　行こうと　思っています。",
+            vietnamese: "Tôi đang nghĩ kỳ nghỉ tới sẽ đi Kyoto.",
+            english: "I'm thinking of going to Kyoto during the next holiday."
+          }
+        ]
+      },
+      {
+        pattern: "〜と言っていました",
+        vietnamese: "~ đã nói rằng ~",
+        english: "~ said that ~",
+        explanation: "Trích dẫn lời nói của người khác trong quá khứ. Dùng thể thường + と言っていました. Nhấn mạnh hành động nói trong một khoảng thời gian.",
+        examples: [
+          {
+            japanese: "田中さんは　今日は　来られないと　言っていました。",
+            vietnamese: "Anh Tanaka đã nói rằng hôm nay không thể đến.",
+            english: "Mr. Tanaka said he couldn't come today."
+          },
+          {
+            japanese: "先生は　宿題を　忘れないでと　言っていました。",
+            vietnamese: "Thầy đã dặn đừng quên bài tập.",
+            english: "The teacher said not to forget the homework."
+          },
+          {
+            japanese: "友達は　日本語は　難しいと　言っていました。",
+            vietnamese: "Bạn tôi đã nói tiếng Nhật khó.",
+            english: "My friend said Japanese was difficult."
+          }
+        ]
+      },
+      {
+        pattern: "〜でしょう",
+        vietnamese: "Có lẽ ~, chắc ~ (dự đoán)",
+        english: "Probably ~, I suppose ~",
+        explanation: "Diễn tả suy đoán của người nói. Động từ/い形 thể thường + でしょう. な形・名詞 bỏ だ + でしょう. Lịch sự hơn と思います.",
+        examples: [
+          {
+            japanese: "明日は　雨が　降るでしょう。",
+            vietnamese: "Ngày mai có lẽ sẽ mưa.",
+            english: "It will probably rain tomorrow."
+          },
+          {
+            japanese: "この　試験は　難しいでしょう。",
+            vietnamese: "Kỳ thi này chắc khó.",
+            english: "This exam is probably difficult."
+          },
+          {
+            japanese: "田中さんは　もう　寝たでしょう。",
+            vietnamese: "Anh Tanaka có lẽ đã ngủ rồi.",
+            english: "Mr. Tanaka has probably gone to bed already."
+          }
+        ]
+      },
+      {
+        pattern: "〜でしょう？（上昇調）",
+        vietnamese: "~ phải không? (xác nhận)",
+        english: "~ right? (seeking confirmation)",
+        explanation: "Dùng でしょう với ngữ điệu lên cuối câu để xác nhận thông tin với người nghe. Có nghĩa 'đúng không?', 'phải không?'.",
+        examples: [
+          {
+            japanese: "明日は　日曜日でしょう？",
+            vietnamese: "Ngày mai là chủ nhật phải không?",
+            english: "Tomorrow is Sunday, right?"
+          },
+          {
+            japanese: "あなたも　行くでしょう？",
+            vietnamese: "Bạn cũng đi phải không?",
+            english: "You're going too, right?"
+          },
+          {
+            japanese: "この　本、読んだでしょう？",
+            vietnamese: "Bạn đã đọc quyển sách này rồi phải không?",
+            english: "You've read this book, haven't you?"
+          }
+        ]
+      }
     ]
   },
 
@@ -5690,6 +7397,100 @@ const VOCABULARY_DATA = [
         vietnamese: "suối nước nóng",
         english: "Hot spring",
         example: "温泉に入りたいです。"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "名詞修飾（Noun modification）",
+        vietnamese: "Bổ nghĩa danh từ bằng mệnh đề",
+        english: "Noun modification with clauses",
+        explanation: "Dùng câu (thể thường) đứng trước để bổ nghĩa cho danh từ. Động từ thể thường + 名詞. VD: 本を読む人 (người đọc sách).",
+        examples: [
+          {
+            japanese: "あそこに　いる　人は　田中さんです。",
+            vietnamese: "Người đang ở kia là anh Tanaka.",
+            english: "The person over there is Mr. Tanaka."
+          },
+          {
+            japanese: "昨日　買った　本は　面白いです。",
+            vietnamese: "Quyển sách mua hôm qua thú vị.",
+            english: "The book I bought yesterday is interesting."
+          },
+          {
+            japanese: "日本語を　話す　人が　います。",
+            vietnamese: "Có người nói tiếng Nhật.",
+            english: "There is someone who speaks Japanese."
+          }
+        ]
+      },
+      {
+        pattern: "〜時（とき）",
+        vietnamese: "~ thời (thời gian)",
+        english: "~ time, occasion",
+        explanation: "Danh từ chỉ thời gian. Dùng sau động từ từ điển (時に行きます) hoặc た-form (時がありました) để nói về thời điểm cụ thể.",
+        examples: [
+          {
+            japanese: "食べる　時、いただきますと　言います。",
+            vietnamese: "Khi ăn, tôi nói itadakimasu.",
+            english: "When eating, I say itadakimasu."
+          },
+          {
+            japanese: "困った　時は　電話してください。",
+            vietnamese: "Khi gặp khó khăn, hãy gọi điện.",
+            english: "Please call me when you're in trouble."
+          },
+          {
+            japanese: "日本に　来た　時、18歳でした。",
+            vietnamese: "Khi đến Nhật, tôi 18 tuổi.",
+            english: "When I came to Japan, I was 18 years old."
+          }
+        ]
+      },
+      {
+        pattern: "〜人（ひと/じん）/ 〜所（ところ）/ 〜物（もの）",
+        vietnamese: "Người ~, nơi ~, vật ~",
+        english: "Person who ~, place where ~, thing which ~",
+        explanation: "Danh từ hình thức sau mệnh đề bổ nghĩa. 人 (người làm ~), 所 (nơi ~), 物 (đồ/việc ~).",
+        examples: [
+          {
+            japanese: "日本語を　教える　人を　探しています。",
+            vietnamese: "Tôi đang tìm người dạy tiếng Nhật.",
+            english: "I'm looking for someone who teaches Japanese."
+          },
+          {
+            japanese: "生まれた　所は　どこですか。",
+            vietnamese: "Nơi bạn sinh ra là đâu?",
+            english: "Where is the place you were born?"
+          },
+          {
+            japanese: "食べたい　物が　たくさん　あります。",
+            vietnamese: "Có nhiều thứ tôi muốn ăn.",
+            english: "There are many things I want to eat."
+          }
+        ]
+      },
+      {
+        pattern: "〜約束（やくそく）",
+        vietnamese: "Lời hứa ~, hẹn ~",
+        english: "Promise to ~, appointment to ~",
+        explanation: "Danh từ 約束 (lời hứa, cuộc hẹn) có thể được bổ nghĩa bởi mệnh đề động từ. VD: 会う約束 (hẹn gặp).",
+        examples: [
+          {
+            japanese: "友達と　会う　約束が　あります。",
+            vietnamese: "Tôi có hẹn gặp bạn.",
+            english: "I have an appointment to meet a friend."
+          },
+          {
+            japanese: "明日　来る　約束を　しました。",
+            vietnamese: "Tôi đã hứa sẽ đến vào ngày mai.",
+            english: "I made a promise to come tomorrow."
+          },
+          {
+            japanese: "毎日　勉強する　約束を　しました。",
+            vietnamese: "Tôi đã hứa sẽ học mỗi ngày.",
+            english: "I promised to study every day."
+          }
+        ]
       }
     ]
   },
@@ -5925,6 +7726,100 @@ const VOCABULARY_DATA = [
         english: "First, first of all",
         example: "まず、お金を入れてください。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "〜とき",
+        vietnamese: "Khi ~, lúc ~",
+        english: "When ~",
+        explanation: "Diễn tả thời điểm xảy ra sự việc. Động từ từ điển + とき (trước khi/trong khi), た-form + とき (sau khi). い形・な形・名詞thể thường + とき.",
+        examples: [
+          {
+            japanese: "日本に　行く　とき、何を　持って　行きますか。",
+            vietnamese: "Khi đi Nhật, bạn mang gì theo?",
+            english: "When you go to Japan, what will you take?"
+          },
+          {
+            japanese: "暇な　とき、何を　しますか。",
+            vietnamese: "Khi rảnh, bạn làm gì?",
+            english: "What do you do when you're free?"
+          },
+          {
+            japanese: "子どもの　とき、よく　ここで　遊びました。",
+            vietnamese: "Hồi còn nhỏ, tôi thường chơi ở đây.",
+            english: "When I was a child, I often played here."
+          }
+        ]
+      },
+      {
+        pattern: "〜と",
+        vietnamese: "Nếu ~ thì ~ (điều kiện tự nhiên)",
+        english: "If/When ~ (natural consequence)",
+        explanation: "Diễn tả điều kiện tự nhiên, kết quả luôn xảy ra. Động từ thể thường + と. Dùng cho sự thật, quy luật, hướng dẫn.",
+        examples: [
+          {
+            japanese: "春に　なると、花が　咲きます。",
+            vietnamese: "Khi sang xuân, hoa nở.",
+            english: "When spring comes, flowers bloom."
+          },
+          {
+            japanese: "この　ボタンを　押すと、ドアが　開きます。",
+            vietnamese: "Nếu nhấn nút này, cửa sẽ mở.",
+            english: "If you press this button, the door opens."
+          },
+          {
+            japanese: "右に　曲がると、銀行が　あります。",
+            vietnamese: "Nếu rẽ phải, có ngân hàng.",
+            english: "If you turn right, there is a bank."
+          }
+        ]
+      },
+      {
+        pattern: "〜前に / 〜後で",
+        vietnamese: "Trước khi ~ / Sau khi ~",
+        english: "Before ~ / After ~",
+        explanation: "Diễn tả thời điểm trước hoặc sau hành động. 前に: động từ từ điển + 前に. 後で: た-form + 後で. Danh từ + の前に/の後で.",
+        examples: [
+          {
+            japanese: "寝る　前に、歯を　磨きます。",
+            vietnamese: "Trước khi ngủ, tôi đánh răng.",
+            english: "Before going to bed, I brush my teeth."
+          },
+          {
+            japanese: "ご飯を　食べた　後で、散歩します。",
+            vietnamese: "Sau khi ăn cơm, tôi đi dạo.",
+            english: "After eating, I take a walk."
+          },
+          {
+            japanese: "授業の　前に、予習します。",
+            vietnamese: "Trước giờ học, tôi chuẩn bị bài.",
+            english: "Before class, I prepare the lesson."
+          }
+        ]
+      },
+      {
+        pattern: "〜ながら",
+        vietnamese: "Vừa ~ vừa ~ (đồng thời)",
+        english: "While ~, ~ at the same time",
+        explanation: "Diễn tả hai hành động xảy ra đồng thời. Động từ ます-form bỏ ます + ながら. Hành động chính ở cuối câu.",
+        examples: [
+          {
+            japanese: "音楽を　聞きながら、勉強します。",
+            vietnamese: "Tôi vừa học vừa nghe nhạc.",
+            english: "I study while listening to music."
+          },
+          {
+            japanese: "テレビを　見ながら、ご飯を　食べます。",
+            vietnamese: "Tôi vừa ăn cơm vừa xem TV.",
+            english: "I eat while watching TV."
+          },
+          {
+            japanese: "歩きながら、話しましょう。",
+            vietnamese: "Hãy vừa đi vừa nói chuyện.",
+            english: "Let's talk while walking."
+          }
+        ]
+      }
     ]
   },
 
@@ -6159,6 +8054,100 @@ const VOCABULARY_DATA = [
         english: "Someone does ~ for me",
         example: "母が料理を作ってくれました。"
       }
+    ],
+    grammar: [
+      {
+        pattern: "あげます / くれます / もらいます",
+        vietnamese: "Cho (từ tôi) / Cho (cho tôi) / Nhận",
+        english: "Give (from me) / Give (to me) / Receive",
+        explanation: "Ba động từ chỉ việc cho nhận. あげます: tôi cho người khác. くれます: người khác cho tôi. もらいます: tôi nhận từ người khác.",
+        examples: [
+          {
+            japanese: "私は　友達に　プレゼントを　あげました。",
+            vietnamese: "Tôi đã tặng quà cho bạn.",
+            english: "I gave a present to my friend."
+          },
+          {
+            japanese: "友達が　私に　プレゼントを　くれました。",
+            vietnamese: "Bạn đã tặng quà cho tôi.",
+            english: "My friend gave me a present."
+          },
+          {
+            japanese: "私は　友達に　プレゼントを　もらいました。",
+            vietnamese: "Tôi đã nhận quà từ bạn.",
+            english: "I received a present from my friend."
+          }
+        ]
+      },
+      {
+        pattern: "〜てあげます / 〜てくれます / 〜てもらいます",
+        vietnamese: "Làm ~ cho (ai) / (Ai) làm ~ cho tôi / Nhờ (ai) làm ~",
+        english: "Do ~ for someone / Someone does ~ for me / Have someone do ~",
+        explanation: "Động từ て-form kết hợp với động từ cho nhận. てあげます: làm giúp người khác. てくれます: người khác làm giúp tôi. てもらいます: được người khác làm giúp.",
+        examples: [
+          {
+            japanese: "私は　弟に　日本語を　教えて　あげました。",
+            vietnamese: "Tôi đã dạy tiếng Nhật cho em trai.",
+            english: "I taught Japanese to my younger brother."
+          },
+          {
+            japanese: "母が　料理を　作って　くれました。",
+            vietnamese: "Mẹ đã nấu ăn cho tôi.",
+            english: "My mother cooked for me."
+          },
+          {
+            japanese: "私は　先生に　漢字を　教えて　もらいました。",
+            vietnamese: "Tôi đã được thầy dạy chữ Hán.",
+            english: "I had my teacher teach me kanji."
+          }
+        ]
+      },
+      {
+        pattern: "〜に〜を　あげます",
+        vietnamese: "Cho ~ (cho ai)",
+        english: "Give ~ to someone",
+        explanation: "Cấu trúc cho đồ vật. Người nhận + に + đồ vật + を + あげます. に chỉ người nhận, を chỉ đồ vật được cho.",
+        examples: [
+          {
+            japanese: "田中さんに　花を　あげました。",
+            vietnamese: "Tôi đã tặng hoa cho anh Tanaka.",
+            english: "I gave flowers to Mr. Tanaka."
+          },
+          {
+            japanese: "友達に　お土産を　あげます。",
+            vietnamese: "Tôi tặng quà lưu niệm cho bạn.",
+            english: "I give souvenirs to my friend."
+          },
+          {
+            japanese: "妹に　本を　あげました。",
+            vietnamese: "Tôi đã cho em gái quyển sách.",
+            english: "I gave a book to my younger sister."
+          }
+        ]
+      },
+      {
+        pattern: "〜に〜を　もらいます",
+        vietnamese: "Nhận ~ từ (ai)",
+        english: "Receive ~ from someone",
+        explanation: "Cấu trúc nhận đồ vật. Người cho + に + đồ vật + を + もらいます. に chỉ người cho (nguồn gốc).",
+        examples: [
+          {
+            japanese: "田中さんに　チョコレートを　もらいました。",
+            vietnamese: "Tôi đã nhận chocolate từ anh Tanaka.",
+            english: "I received chocolate from Mr. Tanaka."
+          },
+          {
+            japanese: "誕生日に　両親に　時計を　もらいました。",
+            vietnamese: "Sinh nhật tôi đã nhận đồng hồ từ bố mẹ.",
+            english: "I received a watch from my parents on my birthday."
+          },
+          {
+            japanese: "友達に　手紙を　もらいました。",
+            vietnamese: "Tôi đã nhận thư từ bạn.",
+            english: "I received a letter from my friend."
+          }
+        ]
+      }
     ]
   },
 
@@ -6350,6 +8339,123 @@ const VOCABULARY_DATA = [
         vietnamese: "lễ cưới",
         english: "Wedding ceremony",
         example: "来月友達の結婚式があります。"
+      }
+    ],
+    grammar: [
+      {
+        pattern: "〜たら",
+        vietnamese: "Nếu ~ thì ~, khi ~ thì ~",
+        english: "If/When ~ (conditional)",
+        explanation: "Diễn tả điều kiện giả định. た-form (động từ/い形/な形/danh từ) + ら. Dùng cho lời khuyên, đề nghị, điều kiện giả định. VD: 行く→行ったら.",
+        examples: [
+          {
+            japanese: "春に　なったら、花見に　行きましょう。",
+            vietnamese: "Khi sang xuân, hãy đi ngắm hoa.",
+            english: "When spring comes, let's go see cherry blossoms."
+          },
+          {
+            japanese: "時間が　あったら、手伝って　ください。",
+            vietnamese: "Nếu có thời gian, hãy giúp tôi.",
+            english: "If you have time, please help me."
+          },
+          {
+            japanese: "雨が　降ったら、出かけません。",
+            vietnamese: "Nếu trời mưa, tôi sẽ không ra ngoài.",
+            english: "If it rains, I won't go out."
+          }
+        ]
+      },
+      {
+        pattern: "〜ても",
+        vietnamese: "Dù ~, cho dù ~",
+        english: "Even if/though ~",
+        explanation: "Diễn tả điều kiện đối lập. て-form + も. Dù điều kiện có xảy ra, kết quả vẫn không đổi. VD: 行く→行っても, 高い→高くても.",
+        examples: [
+          {
+            japanese: "雨が　降っても、行きます。",
+            vietnamese: "Dù trời mưa, tôi vẫn đi.",
+            english: "Even if it rains, I'll go."
+          },
+          {
+            japanese: "高くても、買います。",
+            vietnamese: "Dù đắt, tôi vẫn mua.",
+            english: "Even if it's expensive, I'll buy it."
+          },
+          {
+            japanese: "忙しくても、電話してください。",
+            vietnamese: "Dù bận, hãy gọi điện cho tôi.",
+            english: "Even if you're busy, please call me."
+          }
+        ]
+      },
+      {
+        pattern: "〜たら、〜（発見）",
+        vietnamese: "~ thì phát hiện ~, ~ thì ~",
+        english: "When ~ (discovered/found that ~)",
+        explanation: "Diễn tả phát hiện bất ngờ sau khi làm gì. Hành động trước dùng たら, sau đó là phát hiện/kết quả bất ngờ.",
+        examples: [
+          {
+            japanese: "家に　帰ったら、猫が　いました。",
+            vietnamese: "Khi về nhà, có con mèo.",
+            english: "When I got home, there was a cat."
+          },
+          {
+            japanese: "駅に　着いたら、雨が　降って　いました。",
+            vietnamese: "Khi đến ga, trời đang mưa.",
+            english: "When I arrived at the station, it was raining."
+          },
+          {
+            japanese: "窓を　開けたら、鳥が　飛んで　きました。",
+            vietnamese: "Khi mở cửa sổ, có con chim bay vào.",
+            english: "When I opened the window, a bird flew in."
+          }
+        ]
+      },
+      {
+        pattern: "〜でも",
+        vietnamese: "Dù ~ (cho dù)",
+        english: "Even ~, no matter ~",
+        explanation: "Nhấn mạnh 'bất kể cái gì'. Dùng với từ để hỏi + でも: 何でも (bất cứ gì), どこでも (bất cứ đâu), だれでも (bất cứ ai).",
+        examples: [
+          {
+            japanese: "何でも　食べます。",
+            vietnamese: "Tôi ăn bất cứ thứ gì.",
+            english: "I eat anything."
+          },
+          {
+            japanese: "どこでも　行きます。",
+            vietnamese: "Tôi đi bất cứ đâu.",
+            english: "I'll go anywhere."
+          },
+          {
+            japanese: "だれでも　参加できます。",
+            vietnamese: "Bất cứ ai cũng có thể tham gia.",
+            english: "Anyone can participate."
+          }
+        ]
+      },
+      {
+        pattern: "〜ば（条件形）",
+        vietnamese: "Nếu ~ (dạng điều kiện)",
+        english: "If ~ (conditional form)",
+        explanation: "Dạng điều kiện khác của động từ (nâng cao). Động từ: 〜えば. い形: 〜ければ. な形・名詞: であれば. VD: 行く→行けば, 高い→高ければ.",
+        examples: [
+          {
+            japanese: "時間が　あれば、手伝います。",
+            vietnamese: "Nếu có thời gian, tôi sẽ giúp.",
+            english: "If I have time, I'll help."
+          },
+          {
+            japanese: "安ければ、買います。",
+            vietnamese: "Nếu rẻ, tôi sẽ mua.",
+            english: "If it's cheap, I'll buy it."
+          },
+          {
+            japanese: "わからなければ、聞いてください。",
+            vietnamese: "Nếu không hiểu, hãy hỏi.",
+            english: "If you don't understand, please ask."
+          }
+        ]
       }
     ]
   }

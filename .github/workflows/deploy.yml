@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Chạy khi push vào branch main
+  push:
+    branches: [ main, master ]
+
+  # Cho phép chạy workflow thủ công từ Actions tab
+  workflow_dispatch:
+
+# Cho phép ghi vào GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Chỉ cho phép 1 deployment chạy cùng lúc
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload toàn bộ repository (vì là static site)
+          path: '.'
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
