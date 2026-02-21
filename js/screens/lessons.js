@@ -1,5 +1,5 @@
 /**
- * screens/lessons.js — Lesson grid + lesson menu screen
+ * screens/lessons.js — Lesson grid + lesson menu screen + course selector (JLPT / HSK)
  * Depends on: state, storage (getLessonBestPercent), nav (showScreen)
  * Calls at runtime: quiz.startSession, screens.openVocabList, screens.openGrammarList
  */
@@ -12,45 +12,68 @@ window.QuizApp.screens = window.QuizApp.screens || {};
   const $  = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
 
-  function renderLessonGrid() {
-    const storage = window.QuizApp.storage;
-    const grid    = $("#lesson-grid");
-    grid.innerHTML = "";
+  // ── Course selector ──────────────────────────────────────────
+  const COURSE_KEY = "quiz_active_course";
 
-    // ── Special section cards ────────────────────────
+  function getActiveCourse() {
+    return localStorage.getItem(COURSE_KEY) || "jlpt";
+  }
+
+  function setActiveCourse(course) {
+    localStorage.setItem(COURSE_KEY, course);
+    window.QuizApp.state.activeCourse = course;
+  }
+
+  function updateCourseTabs(course) {
+    $$(".course-tab").forEach(tab => {
+      const isActive = tab.dataset.course === course;
+      tab.classList.toggle("active", isActive);
+      tab.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+  }
+
+  function getCourseHeaderTitle(course) {
+    return course === "hsk" ? "HSK 5" : "Minna no Nihongo 1";
+  }
+
+  // ── JLPT lesson grid ─────────────────────────────────────────
+  function renderJLPTGrid(grid) {
+    const storage = window.QuizApp.storage;
+
+    // Special section cards
     const specials = [
       {
-        id: 'card-alphabet',
-        icon: '🔤',
-        title: 'Bảng chữ cái',
-        meta: 'Hiragana & Katakana',
+        id: "card-alphabet",
+        icon: "&#x1F524;",
+        title: "B&#x1EA3;ng ch&#x1EEF; c&#xE1;i",
+        meta: "Hiragana &amp; Katakana",
         onclick: () => {
-          $("#header-title").textContent = 'Bảng chữ cái';
+          $("#header-title").textContent = "B\u1EA3ng ch\u1EEF c\xE1i";
           window.QuizApp.screens.openAlphabetScreen();
         },
       },
       {
-        id: 'card-counters',
-        icon: '🔢',
-        title: 'Đếm số & Trợ số từ',
-        meta: '17 trợ số từ',
+        id: "card-counters",
+        icon: "&#x1F522;",
+        title: "&#x110;&#x1EBF;m s&#x1ED1; &amp; Tr&#x1EE3; s&#x1ED1; t&#x1EEB;",
+        meta: "17 tr&#x1EE3; s&#x1ED1; t&#x1EEB;",
         onclick: () => {
-          $("#header-title").textContent = 'Đếm số & Trợ số từ';
+          $("#header-title").textContent = "\u0110\u1EBFm s\u1ED1 & Tr\u1EE3 s\u1ED1 t\u1EEB";
           window.QuizApp.screens.openCountersScreen();
         },
       },
     ];
 
     specials.forEach(s => {
-      const card = document.createElement('div');
+      const card = document.createElement("div");
       card.id = s.id;
-      card.className = 'lesson-card lesson-card--special';
+      card.className = "lesson-card lesson-card--special";
       card.innerHTML = `
         <span class="lesson-special-icon">${s.icon}</span>
         <span class="lesson-title">${s.title}</span>
         <span class="lesson-meta">${s.meta}</span>
       `;
-      card.addEventListener('click', s.onclick);
+      card.addEventListener("click", s.onclick);
       grid.appendChild(card);
     });
 
@@ -63,16 +86,16 @@ window.QuizApp.screens = window.QuizApp.screens || {};
 
       if (lessonData) {
         card.innerHTML = `
-          <span class="lesson-number">Bài ${n}</span>
+          <span class="lesson-number">B\xE0i ${n}</span>
           <span class="lesson-title">${lessonData.title}</span>
-          <span class="lesson-meta">${lessonData.vocabulary.length} từ vựng</span>
+          <span class="lesson-meta">${lessonData.vocabulary.length} t\u1EEB v\u1EF1ng</span>
           <div class="lesson-progress-bar"><div class="fill" style="width:${bestPct}%"></div></div>
         `;
         card.addEventListener("click", () => openLessonMenu(lessonData));
       } else {
         card.innerHTML = `
-          <span class="lesson-number">Bài ${n}</span>
-          <span class="lesson-title" style="color:var(--text-muted)">Sắp có...</span>
+          <span class="lesson-number">B\xE0i ${n}</span>
+          <span class="lesson-title" style="color:var(--text-muted)">S\u1EAFp c\xF3...</span>
           <span class="lesson-meta">-</span>
           <div class="lesson-progress-bar"><div class="fill" style="width:0%"></div></div>
         `;
@@ -84,13 +107,81 @@ window.QuizApp.screens = window.QuizApp.screens || {};
     }
   }
 
+  // ── HSK grid ─────────────────────────────────────────────────
+  function renderHSKGrid(grid) {
+    if (typeof HSK5_DATA === "undefined") {
+      const placeholder = document.createElement("div");
+      placeholder.className = "hsk-coming-soon";
+      placeholder.innerHTML = `
+        <span class="hsk-coming-soon-icon">&#x1F4DA;</span>
+        <h3>HSK 5 &#x2014; D&#x1EEF; li&#x1EC7;u &#x111;ang t&#x1EA3;i</h3>
+      `;
+      grid.appendChild(placeholder);
+      return;
+    }
+
+    HSK5_DATA.groups.forEach(function (group) {
+      const bestPct = window.QuizApp.storage.getHSKGroupBestPercent
+        ? window.QuizApp.storage.getHSKGroupBestPercent(group.id)
+        : 0;
+      const card = document.createElement("div");
+      card.className = "lesson-card";
+      card.innerHTML = `
+        <span class="lesson-number">Nh\xF3m ${group.id.toUpperCase()}</span>
+        <span class="lesson-title">${group.title}</span>
+        <span class="lesson-meta">${group.words.length} t\u1EEB v\u1EF1ng</span>
+        <div class="lesson-progress-bar"><div class="fill" style="width:${bestPct}%"></div></div>
+      `;
+      card.addEventListener("click", function () {
+        window.QuizApp.screens.openHSKGroupMenu(group);
+      });
+      grid.appendChild(card);
+    });
+  }
+
+  // ── Main render ───────────────────────────────────────────────
+  function renderLessonGrid() {
+    const course = getActiveCourse();
+    setActiveCourse(course);
+    updateCourseTabs(course);
+
+    const grid = $("#lesson-grid");
+    grid.innerHTML = "";
+
+    if (course === "hsk") {
+      renderHSKGrid(grid);
+    } else {
+      renderJLPTGrid(grid);
+    }
+  }
+
+  // ── Tab click handlers ────────────────────────────────────────
+  $$(".course-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      const course = tab.dataset.course;
+      setActiveCourse(course);
+      updateCourseTabs(course);
+
+      const grid = $("#lesson-grid");
+      grid.innerHTML = "";
+      if (course === "hsk") {
+        renderHSKGrid(grid);
+      } else {
+        renderJLPTGrid(grid);
+      }
+
+      $("#header-title").textContent = getCourseHeaderTitle(course);
+    });
+  });
+
+  // ── Lesson menu ───────────────────────────────────────────────
   function openLessonMenu(lesson) {
     const state = window.QuizApp.state;
     const nav   = window.QuizApp.nav;
     state.currentLesson = lesson;
-    $("#menu-lesson-title").textContent = `Bài ${lesson.lessonNumber}: ${lesson.title}`;
-    $("#menu-vocab-count").textContent  = `${lesson.vocabulary.length} từ vựng`;
-    $("#header-title").textContent      = `Bài ${lesson.lessonNumber}`;
+    $("#menu-lesson-title").textContent = `B\xE0i ${lesson.lessonNumber}: ${lesson.title}`;
+    $("#menu-vocab-count").textContent  = `${lesson.vocabulary.length} t\u1EEB v\u1EF1ng`;
+    $("#header-title").textContent      = `B\xE0i ${lesson.lessonNumber}`;
     nav.showScreen("menu");
   }
 
@@ -122,6 +213,8 @@ window.QuizApp.screens = window.QuizApp.screens || {};
     });
   });
 
-  window.QuizApp.screens.renderLessonGrid = renderLessonGrid;
-  window.QuizApp.screens.openLessonMenu   = openLessonMenu;
+  window.QuizApp.screens.renderLessonGrid     = renderLessonGrid;
+  window.QuizApp.screens.openLessonMenu       = openLessonMenu;
+  window.QuizApp.screens.getActiveCourse      = getActiveCourse;
+  window.QuizApp.screens.getCourseHeaderTitle = getCourseHeaderTitle;
 })();

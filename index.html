@@ -38,7 +38,18 @@
 
     <!-- ========== SCREEN: Lesson List ========== -->
     <section id="screen-lessons" class="screen active">
-      <h2 class="screen-heading">Chọn bài học</h2>
+      <div class="course-tabs" role="tablist" aria-label="Chọn ngôn ngữ">
+        <button class="course-tab active" data-course="jlpt" role="tab" aria-selected="true">
+          <span class="course-tab-flag">&#x1F1EF;&#x1F1F5;</span>
+          <span class="course-tab-label">JLPT</span>
+          <span class="course-tab-sub">Ti&#x1EBF;ng Nh&#x1EAD;t</span>
+        </button>
+        <button class="course-tab" data-course="hsk" role="tab" aria-selected="false">
+          <span class="course-tab-flag">&#x1F1E8;&#x1F1F3;</span>
+          <span class="course-tab-label">HSK</span>
+          <span class="course-tab-sub">Ti&#x1EBF;ng Trung</span>
+        </button>
+      </div>
       <div id="lesson-grid" class="lesson-grid">
         <!-- Rendered by JS -->
       </div>
@@ -120,6 +131,50 @@
           </svg>
           Trắc nghiệm VN → JP
         </button>
+      </div>
+    </section>
+
+    <!-- ========== SCREEN: HSK Group Menu ========== -->
+    <section id="screen-hsk-menu" class="screen">
+      <h2 id="hsk-menu-group-title" class="screen-heading"></h2>
+      <p id="hsk-menu-word-count" class="text-muted"></p>
+
+      <div class="menu-actions hsk-menu-actions">
+        <button class="btn btn-primary btn-lg" data-mode="hsk-fc">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Flashcard
+        </button>
+        <button class="btn btn-accent btn-lg" data-mode="hsk-mc-cn-vi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Tr&#x1EAF;c nghi&#x1EC7;m CN &#x2192; VN
+        </button>
+        <button class="btn btn-accent btn-lg" data-mode="hsk-mc-vi-cn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Tr&#x1EAF;c nghi&#x1EC7;m VN &#x2192; CN
+        </button>
+        <button class="btn btn-outline btn-lg" data-mode="hsk-vocab-list">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Xem danh s&#xE1;ch t&#x1EEB;
+        </button>
+      </div>
+    </section>
+
+    <!-- ========== SCREEN: HSK Vocabulary List ========== -->
+    <section id="screen-hsk-vocab-list" class="screen">
+      <h2 id="hsk-vocab-list-title" class="screen-heading"></h2>
+      <div id="hsk-vocab-table-wrapper" class="table-wrapper">
+        <table id="hsk-vocab-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>&#x4E2D;&#x6587;</th>
+              <th>Pinyin</th>
+              <th>Ti&#x1EBF;ng Vi&#x1EC7;t</th>
+              <th>&#x1F50A;</th>
+            </tr>
+          </thead>
+          <tbody id="hsk-vocab-table-body"></tbody>
+        </table>
       </div>
     </section>
 
@@ -381,6 +436,13 @@
   <script src="js/data/minna/alphabet.js"></script>
   <script src="js/data/minna/counters.js"></script>
   <script src="js/data/minna/index.js"></script>
+  <!-- Data: HSK 5 -->
+  <script src="js/data/hsk/hsk5-a.js"></script>
+  <script src="js/data/hsk/hsk5-b.js"></script>
+  <script src="js/data/hsk/hsk5-c.js"></script>
+  <script src="js/data/hsk/hsk5-d.js"></script>
+  <script src="js/data/hsk/hsk5-e.js"></script>
+  <script src="js/data/hsk/index.js"></script>
   <script src="js/data/index.js"></script>
   <!-- Core -->
   <script src="js/core/utils.js"></script>
@@ -394,6 +456,7 @@
   <!-- Screens (early — no quiz dep) -->
   <script src="js/screens/vocab-list.js"></script>
   <script src="js/screens/grammar-list.js"></script>
+  <script src="js/screens/hsk-vocab-list.js"></script>
   <!-- Quiz -->
   <script src="js/quiz/flashcard.js"></script>
   <script src="js/quiz/mc.js"></script>
@@ -402,6 +465,7 @@
   <!-- Screens (late — depend on quiz/session) -->
   <script src="js/screens/lessons.js"></script>
   <script src="js/screens/results.js"></script>
+  <script src="js/screens/hsk-menu.js"></script>
   <script src="js/screens/alphabet.js"></script>
   <script src="js/screens/counters.js"></script>
   <script src="js/quiz/alpha-quiz.js"></script>

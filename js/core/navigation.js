@@ -22,6 +22,8 @@ window.QuizApp.nav = (function () {
     results:     $("#screen-results"),
     alphabet:    $("#screen-alphabet"),
     counters:    $("#screen-counters"),
+    hskMenu:     $("#screen-hsk-menu"),
+    hskVocabList: $("#screen-hsk-vocab-list"),
   };
 
   const state = window.QuizApp.state;
@@ -53,7 +55,10 @@ window.QuizApp.nav = (function () {
     } else {
       window.QuizApp.screens.renderLessonGrid();
       showScreen("lessons", false);
-      $("#header-title").textContent = "Minna no Nihongo 1";
+      const title = window.QuizApp.screens.getCourseHeaderTitle
+        ? window.QuizApp.screens.getCourseHeaderTitle(window.QuizApp.screens.getActiveCourse())
+        : "Minna no Nihongo 1";
+      $("#header-title").textContent = title;
     }
   }
 
@@ -76,7 +81,10 @@ window.QuizApp.nav = (function () {
     window.QuizApp.screens.renderLessonGrid();
     clearNavigationHistory();
     showScreen("lessons", false);
-    $("#header-title").textContent = "Minna no Nihongo 1";
+    const title = window.QuizApp.screens.getCourseHeaderTitle
+      ? window.QuizApp.screens.getCourseHeaderTitle(window.QuizApp.screens.getActiveCourse())
+      : "Minna no Nihongo 1";
+    $("#header-title").textContent = title;
   });
 
   $("#btn-back").addEventListener("click", () => {
